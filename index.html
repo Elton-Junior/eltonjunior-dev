@@ -12,6 +12,7 @@
 <meta property="og:title" content="Elton Junior — T.I. &amp; Automacao com IA">
 <meta property="og:description" content="SaaS, e-commerce e automacao com IA para pequenas e medias empresas. Seis sistemas no ar agora.">
 <meta property="og:url" content="https://eltonjunior.dev/">
+<meta property="og:image" content="https://eltonjunior.dev/foto.webp">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A0B'/%3E%3Cpath d='M9 8h14v4H13v4h9v4h-9v4h10v4H9z' fill='%23E11B2C'/%3E%3C/svg%3E">
 <title>Portfólio Elton Junior</title>
@@ -103,6 +104,21 @@ h1.name{font-family:var(--display);text-transform:uppercase;font-size:clamp(34px
 .crow .st{margin-left:auto;flex:none;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);display:flex;align-items:center;gap:6px}
 .crow .st i{width:5px;height:5px;border-radius:50%;background:var(--ok);display:block}
 .console-foot{padding:10px 13px;background:#000;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--faint)}
+
+/* retrato recortado, subindo por cima da palavra display */
+.portrait{display:flex;justify-content:center;align-items:flex-end;position:relative;z-index:3;margin-top:clamp(-172px,-13vw,-56px);pointer-events:none}
+.portrait img{height:clamp(330px,41vw,566px);width:auto;max-width:100%;display:block;
+  -webkit-mask-image:linear-gradient(to bottom,#000 68%,rgba(0,0,0,.5) 88%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 68%,rgba(0,0,0,.5) 88%,transparent 100%);
+  animation:portrait-in 1.15s cubic-bezier(.16,.84,.26,1) both;animation-delay:.34s}
+@keyframes portrait-in{from{opacity:0;transform:translateY(38px) scale(.985)}to{opacity:1;transform:none}}
+/* o painel de producao passa a ocupar a largura toda, abaixo das tres colunas */
+.hero-grid .console{order:9;grid-column:1/-1;margin-top:clamp(10px,1.6vw,22px);display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+.hero-grid .console .console-top,.hero-grid .console .console-foot{grid-column:1/-1}
+.hero-grid .console .crow{background:var(--surface);border-bottom:0}
+@media (max-width:1020px){.portrait{margin-top:clamp(-118px,-9vw,-40px)}.hero-grid .console{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:760px){.portrait{margin-top:-26px}.portrait img{height:clamp(290px,72vw,420px)}}
+@media (max-width:560px){.hero-grid .console{grid-template-columns:1fr}}
 
 .hero-stats{display:flex;flex-direction:column;gap:20px}
 .hstat{display:flex;align-items:baseline;gap:11px;animation:fade .8s ease both}
@@ -281,6 +297,10 @@ img{max-width:100%}
           <a class="btn btn-ghost" href="#projetos">Ver projetos</a>
         </div>
         <span class="worldwide"><i aria-hidden="true"></i>Atendimento remoto · Brasil</span>
+      </div>
+
+      <div class="portrait">
+        <img src="foto.webp" width="550" height="1078" alt="Elton Junior" fetchpriority="high" decoding="async">
       </div>
 
       <div class="console" aria-label="Endereços em produção">
