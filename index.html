@@ -190,6 +190,20 @@ h1.name{font-family:var(--display);text-transform:uppercase;font-size:clamp(34px
 .quote .sig{font-family:var(--body);font-style:italic;font-size:19px;margin-top:auto;position:relative}
 .quote .q-cta{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.3);padding-top:13px;position:relative;text-decoration:none;display:flex;align-items:center;gap:8px}
 
+/* ---- depoimento ---- */
+.depo{margin:32px 0 0;padding:0;display:grid;gap:26px}
+.depo blockquote{margin:0;padding:0 0 0 clamp(18px,3vw,34px);border-left:3px solid var(--red);display:flex;flex-direction:column;gap:15px}
+.depo blockquote p{font-size:clamp(19px,2.4vw,29px);line-height:1.36;font-weight:500;letter-spacing:-.012em;max-width:44ch}
+.depo blockquote p em{font-style:normal;color:var(--red)}
+.depo blockquote p.secundaria{font-size:clamp(15px,1.5vw,17.5px);font-weight:400;color:var(--muted);max-width:60ch}
+.depo figcaption{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-left:clamp(18px,3vw,34px)}
+.d-av{width:44px;height:44px;flex:none;display:grid;place-items:center;background:var(--red);color:#fff;font-family:var(--display);font-size:13px;letter-spacing:-.02em}
+.depo figcaption b{font-size:14.5px;font-weight:600;display:block}
+.depo figcaption small{display:block;font-size:12.5px;color:var(--faint);margin-top:2px}
+.depo figcaption small a{color:var(--muted)}
+.d-src{margin-left:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);padding:7px 10px;border-radius:2px}
+@media (max-width:640px){.d-src{margin-left:0}}
+
 /* ---- github ---- */
 .repos{margin-top:34px;border:1px solid var(--line);background:var(--surface)}
 .repo{display:grid;grid-template-columns:1.5fr 1.2fr auto auto;gap:16px;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line);transition:background .2s}
@@ -472,6 +486,30 @@ img{max-width:100%}
         </span>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="band" id="depoimento" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <h2>O que o cliente disse</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <a class="side" href="https://cubas-metales-site.vercel.app" style="text-decoration:none">Ver o site →</a>
+    </div>
+    <figure class="depo" data-reveal>
+      <blockquote>
+        <p>Acabei de abrir o site. O trabalho ficou <em>perfeito</em>, irmão, perfeito. É absurdo a qualidade que você fez aqui.</p>
+        <p class="secundaria">Eu já tinha feito outros sites anteriormente, recebi cotações, recebi modelos de quem fez — mas esse seu aqui ficou absurdo. Parabéns.</p>
+      </blockquote>
+      <figcaption>
+        <span class="d-av" aria-hidden="true">CM</span>
+        <span>
+          <b>Cliente da Cubas Metales</b>
+          <small>Fabricante de cubas em aço inox 430 · <a href="https://cubas-metales-site.vercel.app">cubas-metales-site.vercel.app</a></small>
+        </span>
+        <span class="d-src">transcrito de áudio no WhatsApp</span>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
