@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Elton Junior — especialista em T.I. e automacao com IA. SaaS multi-tenant, e-commerce, integracoes WhatsApp e Stripe, apps Android e iOS. Sistemas em producao, nao prototipos.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="canonical" href="https://eltonjunior.dev/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Elton Junior">
+<meta property="og:title" content="Elton Junior — T.I. &amp; Automacao com IA">
+<meta property="og:description" content="SaaS, e-commerce e automacao com IA para pequenas e medias empresas. Seis sistemas no ar agora.">
+<meta property="og:url" content="https://eltonjunior.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A0B'/%3E%3Cpath d='M9 8h14v4H13v4h9v4h-9v4h10v4H9z' fill='%23E11B2C'/%3E%3C/svg%3E">
+<title>Portfólio Elton Junior</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<style>
+/* Layout: revista editorial preto e vermelho — palavra display gigante no fundo, painel de produção por cima, projetos numerados em linhas de catálogo. */
+:root{
+  --bg:#0A0A0B; --surface:#121216; --surface-2:#18181E; --line:#27272E;
+  --ink:#F4F3F1; --muted:#9A9AA3; --faint:#6B6B75;
+  --red:#E11B2C; --red-ink:#FFFFFF; --red-deep:#8C0E1B; --red-glow:rgba(225,27,44,.16);
+  --ok:#2FBF71;
+  --display:'Archivo Black','Arial Black',Impact,sans-serif;
+  --body:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono','Cascadia Mono',Consolas,monospace;
+  --maxw:1180px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:#000}
+h1,h2,h3{margin:0;line-height:1;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band>.wrap{padding-block:clamp(52px,7vw,96px)}
+.mono{font-family:var(--mono)}
+.label{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.sec-head{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.sec-head h2{font-family:var(--display);font-size:clamp(24px,3.4vw,38px);text-transform:uppercase;letter-spacing:-.02em}
+.sec-head .rule{flex:1;height:1px;background:var(--line);min-width:30px}
+.sec-head .side{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.red{color:var(--red)}
+
+/* ---- topbar + nav ---- */
+.topbar{border-bottom:1px solid var(--line);background:#000}
+.topbar .wrap{display:flex;gap:14px;align-items:center;padding-block:9px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+.avail{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--ink)}
+.avail i{width:7px;height:7px;border-radius:50%;background:var(--ok);display:block;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(47,191,113,.55)}50%{box-shadow:0 0 0 6px rgba(47,191,113,0)}}
+header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(10,10,11,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.bar .wrap{display:flex;align-items:center;gap:16px;padding-block:13px}
+.mark{font-family:var(--display);font-size:15px;text-transform:uppercase;text-decoration:none;letter-spacing:-.01em}
+.mark span{color:var(--red)}
+nav.links{display:flex;gap:24px;margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+nav.links a{color:var(--muted);text-decoration:none;transition:color .15s}
+nav.links a:hover{color:var(--red)}
+@media (max-width:940px){nav.links{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--body);font-weight:700;font-size:14px;padding:13px 20px;border-radius:2px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s,color .15s;letter-spacing:.01em}
+.btn-cta{background:var(--red);color:var(--red-ink)}
+.btn-cta:hover{transform:translateY(-2px);background:#F32B3C}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--red);color:var(--red)}
+.btn-sm{padding:9px 14px;font-size:12.5px}
+.btn:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.btn svg{flex:none}
+@media (max-width:430px){header.bar .btn{padding:9px 12px;font-size:12px}}
+
+/* ---- hero ---- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 72% 18%,var(--red-glow),transparent 70%);pointer-events:none}
+.hero>.wrap{position:relative;z-index:2;padding-block:clamp(26px,3.4vw,42px) clamp(40px,5vw,68px)}
+.bigword{display:flex;justify-content:space-between;overflow:hidden;line-height:.84;margin-bottom:clamp(-16px,-1.4vw,-8px)}
+.bigword span{display:block;font-family:var(--display);text-transform:uppercase;font-size:clamp(46px,14.2vw,186px);color:var(--red);letter-spacing:-.045em;animation:rise 1s cubic-bezier(.16,.84,.26,1) both;animation-delay:calc(var(--i) * 55ms)}
+@keyframes rise{from{transform:translateY(106%)}to{transform:translateY(0)}}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr 190px;gap:clamp(20px,3vw,40px);align-items:start;margin-top:clamp(18px,2.4vw,30px)}
+.hero-grid>*{min-width:0}
+@media (max-width:1020px){.hero-grid{grid-template-columns:1fr 1fr}.hero-stats{grid-column:1/-1;flex-direction:row!important;flex-wrap:wrap}}
+@media (max-width:760px){.hero-grid{grid-template-columns:1fr}}
+.hello{font-family:var(--body);font-style:italic;font-weight:500;font-size:clamp(17px,2vw,23px);color:var(--muted);animation:fade .8s ease both;animation-delay:.42s}
+h1.name{font-family:var(--display);text-transform:uppercase;font-size:clamp(34px,5.6vw,64px);letter-spacing:-.03em;line-height:.94;margin-top:6px;animation:fade .8s ease both;animation-delay:.5s}
+.role{font-family:var(--mono);font-size:clamp(11px,1.3vw,13px);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-top:14px;animation:fade .8s ease both;animation-delay:.58s}
+.hero-p{color:var(--muted);font-size:15.5px;margin-top:16px;max-width:46ch;animation:fade .8s ease both;animation-delay:.64s}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero-cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:24px;animation:fade .8s ease both;animation-delay:.72s}
+.worldwide{display:inline-flex;align-items:center;gap:9px;margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:8px 12px;border-radius:2px;animation:fade .8s ease both;animation-delay:.78s}
+.worldwide i{width:6px;height:6px;background:var(--red);display:block;border-radius:50%}
+
+.console{background:var(--surface);border:1px solid var(--line);border-radius:3px;overflow:hidden;animation:fade .9s ease both;animation-delay:.5s}
+.console-top{display:flex;align-items:center;gap:7px;padding:11px 13px;background:#000;border-bottom:1px solid var(--line)}
+.console-top b{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.console-top .dots{display:flex;gap:5px;margin-right:4px}
+.console-top .dots i{width:7px;height:7px;border-radius:50%;background:var(--line);display:block}
+.console-top .dots i:first-child{background:var(--red)}
+.console-top .reg{margin-left:auto;font-family:var(--mono);font-size:9.5px;color:var(--faint);border:1px solid var(--line);padding:2px 6px;border-radius:2px}
+.crow{display:flex;align-items:center;gap:10px;padding:10px 13px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11.5px;min-width:0}
+.crow:last-of-type{border-bottom:0}
+.crow a{color:var(--muted);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;transition:color .15s}
+.crow a:hover{color:var(--ink)}
+.crow .st{margin-left:auto;flex:none;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);display:flex;align-items:center;gap:6px}
+.crow .st i{width:5px;height:5px;border-radius:50%;background:var(--ok);display:block}
+.console-foot{padding:10px 13px;background:#000;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--faint)}
+
+.hero-stats{display:flex;flex-direction:column;gap:20px}
+.hstat{display:flex;align-items:baseline;gap:11px;animation:fade .8s ease both}
+.hstat:nth-child(1){animation-delay:.72s}.hstat:nth-child(2){animation-delay:.8s}.hstat:nth-child(3){animation-delay:.88s}.hstat:nth-child(4){animation-delay:.96s}
+.hstat b{font-family:var(--display);font-size:clamp(28px,3.4vw,40px);color:var(--red);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.hstat span{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);line-height:1.4}
+
+/* ---- marquee ---- */
+.marq{border-block:1px solid var(--line);background:#000;overflow:hidden;padding-block:13px}
+.marq-track{display:flex;gap:40px;width:max-content;animation:slide 34s linear infinite}
+.marq span{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.marq span em{font-style:normal;color:var(--red)}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---- projetos ---- */
+.plist{margin-top:34px;border-top:1px solid var(--line)}
+.prow{display:grid;grid-template-columns:66px 1.5fr 1.2fr auto;gap:clamp(14px,2.4vw,30px);align-items:center;padding:clamp(18px,2.2vw,26px) 10px;border-bottom:1px solid var(--line);position:relative;text-decoration:none;transition:padding-left .25s ease}
+.prow>*{min-width:0;position:relative;z-index:2}
+.prow::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(225,27,44,.14),transparent 62%);opacity:0;transition:opacity .25s ease;z-index:1}
+.prow:hover::before,.prow:focus-visible::before{opacity:1}
+.prow:hover{padding-left:22px}
+.prow:focus-visible{outline:1px solid var(--red);outline-offset:-1px}
+@media (max-width:880px){.prow{grid-template-columns:48px 1fr auto;gap:14px}.prow .pstack{grid-column:2/-1}}
+.pnum{font-family:var(--display);font-size:clamp(22px,2.6vw,32px);color:var(--line);letter-spacing:-.03em;transition:color .25s ease}
+.prow:hover .pnum{color:var(--red)}
+.pname{font-family:var(--display);font-size:clamp(18px,2.3vw,27px);text-transform:uppercase;letter-spacing:-.02em}
+.pdesc{font-size:13.5px;color:var(--muted);margin-top:6px;max-width:52ch}
+.ptag{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:7px}
+.pstack{display:flex;flex-wrap:wrap;gap:6px}
+.pstack b{font-family:var(--mono);font-weight:400;font-size:10.5px;color:var(--muted);border:1px solid var(--line);padding:4px 8px;border-radius:2px}
+.parrow{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--muted);flex:none;transition:all .25s ease}
+.prow:hover .parrow{background:var(--red);border-color:var(--red);color:#fff;transform:rotate(-45deg)}
+.pmeta{font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:8px;letter-spacing:.08em}
+
+/* ---- serviços ---- */
+.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:34px}
+@media (max-width:900px){.svcs{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.svcs{grid-template-columns:1fr}}
+.svc{background:var(--surface);padding:28px 24px;display:flex;flex-direction:column;gap:10px;min-width:0;position:relative;transition:background .25s}
+.svc:hover{background:var(--surface-2)}
+.svc::after{content:"";position:absolute;left:0;top:0;width:3px;height:0;background:var(--red);transition:height .3s ease}
+.svc:hover::after{height:100%}
+.svc .n{font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:.16em}
+.svc h3{font-family:var(--display);font-size:17px;text-transform:uppercase;line-height:1.15;letter-spacing:-.01em}
+.svc p{font-size:14px;color:var(--muted)}
+
+/* ---- processo + skills ---- */
+.two{display:grid;grid-template-columns:1fr 1fr 300px;gap:clamp(20px,2.6vw,36px);margin-top:34px;align-items:start}
+.two>*{min-width:0}
+@media (max-width:1040px){.two{grid-template-columns:1fr 1fr}.quote{grid-column:1/-1}}
+@media (max-width:720px){.two{grid-template-columns:1fr}}
+.blk h3{font-family:var(--display);font-size:16px;text-transform:uppercase;letter-spacing:.02em;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.edu{display:flex;flex-direction:column;gap:18px;margin-top:18px}
+.edu-i{display:flex;gap:14px;align-items:flex-start}
+.edu-i .yr{font-family:var(--mono);font-size:9.5px;color:var(--red);letter-spacing:.1em;white-space:nowrap;border:1px solid var(--line);padding:3px 7px;border-radius:2px;margin-left:auto;flex:none}
+.edu-i b{font-size:14.5px;font-weight:600;display:block}
+.edu-i small{color:var(--faint);font-size:12.5px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.chips b{font-family:var(--mono);font-weight:400;font-size:10.5px;color:var(--muted);background:var(--surface);border:1px solid var(--line);padding:6px 9px;border-radius:2px}
+.steps{display:flex;flex-direction:column;gap:16px;margin-top:18px}
+.stp{display:flex;gap:14px;align-items:flex-start}
+.stp .ic{width:30px;height:30px;border-radius:50%;border:1px solid var(--red);color:var(--red);font-family:var(--mono);font-size:10px;font-weight:700;display:grid;place-items:center;flex:none}
+.stp b{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;display:block;color:var(--ink)}
+.stp p{font-size:13.5px;color:var(--muted);margin-top:3px}
+.quote{background:var(--red);color:#fff;padding:28px 24px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.quote::before{content:"\201C";position:absolute;top:-28px;right:10px;font-family:var(--display);font-size:150px;color:rgba(255,255,255,.14);line-height:1}
+.quote p{font-size:16.5px;font-weight:500;line-height:1.45;position:relative}
+.quote .sig{font-family:var(--body);font-style:italic;font-size:19px;margin-top:auto;position:relative}
+.quote .q-cta{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.3);padding-top:13px;position:relative;text-decoration:none;display:flex;align-items:center;gap:8px}
+
+/* ---- github ---- */
+.repos{margin-top:34px;border:1px solid var(--line);background:var(--surface)}
+.repo{display:grid;grid-template-columns:1.5fr 1.2fr auto auto;gap:16px;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line);transition:background .2s}
+.repo:last-child{border-bottom:0}
+.repo:hover{background:var(--surface-2)}
+@media (max-width:860px){.repo{grid-template-columns:1fr auto auto;gap:10px}.repo .lw{grid-column:1/-1}}
+.rname{font-family:var(--mono);font-size:13.5px;font-weight:700;text-decoration:none;min-width:0}
+a.rname:hover{color:var(--red)}
+.rname small{display:block;font-family:var(--body);font-size:12.5px;font-weight:400;color:var(--faint);margin-top:3px}
+.lw{min-width:0}
+.lbar{display:flex;height:5px;overflow:hidden;background:var(--surface-2)}
+.lbar i{display:block;height:100%}
+.llab{font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:6px;display:block}
+.rc{font-family:var(--mono);font-size:11.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.vis{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border:1px solid var(--line);color:var(--faint);white-space:nowrap;border-radius:2px}
+.vis.pub{border-color:var(--ok);color:var(--ok)}
+
+/* ---- faq ---- */
+.faq{margin-top:30px;border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;padding:18px 2px;font-family:var(--display);font-size:15.5px;text-transform:uppercase;letter-spacing:-.01em;display:flex;align-items:center;gap:14px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";margin-left:auto;font-family:var(--mono);color:var(--red);font-size:18px;font-weight:700}
+details[open] summary::after{content:"\2013"}
+summary:hover{color:var(--red)}
+summary:focus-visible{outline:1px solid var(--red);outline-offset:2px}
+details p{padding:0 2px 20px;color:var(--muted);font-size:14.5px;max-width:76ch}
+
+/* ---- contato ---- */
+.close{border-top:1px solid var(--line);background:#000;position:relative;overflow:hidden}
+.close::after{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 18% 100%,var(--red-glow),transparent 70%);pointer-events:none}
+.close .wrap{position:relative;z-index:2;padding-block:clamp(50px,6.5vw,90px)}
+.close h2{font-family:var(--display);text-transform:uppercase;font-size:clamp(30px,6.4vw,76px);line-height:.92;letter-spacing:-.035em}
+.close h2 em{font-style:normal;color:var(--red)}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3.4vw,48px);margin-top:34px;align-items:start}
+.cgrid>*{min-width:0}
+@media (max-width:820px){.cgrid{grid-template-columns:1fr}}
+.crows{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line)}
+.ci{display:flex;align-items:center;gap:14px;padding:15px 16px;background:var(--surface);text-decoration:none;transition:background .2s}
+.ci:hover{background:var(--surface-2)}
+.ci .sq{width:36px;height:36px;background:var(--red);display:grid;place-items:center;flex:none;color:#fff}
+.ci b{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);display:block}
+.ci span{font-size:14.5px;font-weight:500;word-break:break-word}
+.copy{margin-left:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--muted);padding:7px 10px;border-radius:2px;cursor:pointer;flex:none}
+.copy:hover{border-color:var(--red);color:var(--red)}
+.copy:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+footer.foot{border-top:1px solid var(--line);background:#000}
+footer.foot .wrap{padding-block:24px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.08em}
+footer.foot a{color:var(--muted);text-decoration:none}
+footer.foot a:hover{color:var(--red)}
+.fr{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap}
+
+[data-reveal].pre{opacity:0;transform:translateY(22px)}
+[data-reveal].in{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal].pre{opacity:1!important;transform:none!important}}
+</style>
+<style>
+html{-webkit-text-size-adjust:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Elton Junior — T.I. &amp; Automação com IA</span>
+    <span class="avail"><i aria-hidden="true"></i>Disponível para projetos</span>
+  </div>
+</div>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#top">ELTON<span>.</span>JUNIOR</a>
+    <nav class="links" aria-label="Seções">
+      <a href="#projetos">Projetos</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#processo">Processo</a>
+      <a href="#github">GitHub</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn btn-cta btn-sm" href="https://wa.me/5511913633327?text=Ol%C3%A1%20Elton%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20falar%20sobre%20um%20projeto.">WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="bigword" aria-label="Portfólio">
+      <span style="--i:0" aria-hidden="true">P</span><span style="--i:1" aria-hidden="true">O</span><span style="--i:2" aria-hidden="true">R</span><span style="--i:3" aria-hidden="true">T</span><span style="--i:4" aria-hidden="true">F</span><span style="--i:5" aria-hidden="true">Ó</span><span style="--i:6" aria-hidden="true">L</span><span style="--i:7" aria-hidden="true">I</span><span style="--i:8" aria-hidden="true">O</span>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <p class="hello">Olá, eu sou</p>
+        <h1 class="name">Elton<br>Junior</h1>
+        <p class="role">Especialista em T.I. &amp; Automação com IA</p>
+        <p class="hero-p">Construo SaaS, e-commerce e automação para pequenas e médias empresas. Não entrego protótipo: entrego sistema com endereço público, banco de dados e manutenção. Tudo o que está nesta página está no ar agora.</p>
+        <div class="hero-cta">
+          <a class="btn btn-cta" href="https://wa.me/5511913633327?text=Ol%C3%A1%20Elton%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20falar%20sobre%20um%20projeto.">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2m0 1.67c4.55 0 8.25 3.7 8.25 8.24 0 4.55-3.7 8.25-8.25 8.25-1.5 0-2.97-.4-4.25-1.17l-.3-.18-3.12.82.83-3.04-.19-.31a8.19 8.19 0 0 1-1.25-4.37c0-4.54 3.7-8.24 8.28-8.24m-3.6 4.1c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.43 1.03 2.6c.12.17 1.75 2.79 4.23 3.8 2.06.84 2.48.67 2.93.63.44-.04 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.23-.17-.48-.29-.25-.12-1.44-.71-1.66-.79-.23-.08-.39-.12-.56.13-.17.25-.65.83-.8 1-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.1-.51.12-.12.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.35-.03-.5-.08-.14-.56-1.37-.77-1.87-.17-.4-.35-.41-.5-.42h-.4Z"/></svg>
+            Chamar no WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="#projetos">Ver projetos</a>
+        </div>
+        <span class="worldwide"><i aria-hidden="true"></i>Atendimento remoto · Brasil</span>
+      </div>
+
+      <div class="console" aria-label="Endereços em produção">
+        <div class="console-top">
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b>produção</b>
+          <span class="reg">sa-east-1</span>
+        </div>
+        <div class="crow"><a href="https://ordemflow-ten.vercel.app">ordemflow-ten.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
+        <div class="crow"><a href="https://crm-zeta-inky.vercel.app">crm-zeta-inky.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
+        <div class="crow"><a href="https://avizo-three.vercel.app">avizo-three.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
+        <div class="crow"><a href="https://rr-modas.vercel.app">rr-modas.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
+        <div class="crow"><a href="https://cubas-metales-site.vercel.app">cubas-metales-site.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
+        <div class="crow"><a href="https://bolsaepoder.vercel.app">bolsaepoder.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
+        <div class="console-foot">Checado em 20/10/2026 · mais 3 projetos na mesma conta</div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hstat"><b data-count="9">9</b><span>sistemas<br>construídos</span></div>
+        <div class="hstat"><b data-count="6">6</b><span>endereços<br>no ar hoje</span></div>
+        <div class="hstat"><b data-count="6">6</b><span>bancos Postgres<br>com RLS</span></div>
+        <div class="hstat"><b>2,3<small style="font-size:.5em"> MB</small></b><span>de TypeScript<br>publicado</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marq" aria-hidden="true">
+  <div class="marq-track">
+    <span>Next.js 16 <em>/</em> TypeScript <em>/</em> React 19 <em>/</em> Supabase <em>/</em> PostgreSQL <em>/</em> Row Level Security <em>/</em> Tailwind v4 <em>/</em> Stripe <em>/</em> Twilio WhatsApp <em>/</em> React Native <em>/</em> Expo <em>/</em> Vercel <em>/</em> Claude Code <em>/</em> PL/pgSQL <em>/</em> ffmpeg <em>/</em> PowerShell <em>/</em></span>
+    <span>Next.js 16 <em>/</em> TypeScript <em>/</em> React 19 <em>/</em> Supabase <em>/</em> PostgreSQL <em>/</em> Row Level Security <em>/</em> Tailwind v4 <em>/</em> Stripe <em>/</em> Twilio WhatsApp <em>/</em> React Native <em>/</em> Expo <em>/</em> Vercel <em>/</em> Claude Code <em>/</em> PL/pgSQL <em>/</em> ffmpeg <em>/</em> PowerShell <em>/</em></span>
+  </div>
+</div>
+
+<section class="band" id="projetos">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <h2>Projetos selecionados</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <a class="side" href="https://github.com/Elton-Junior" style="text-decoration:none">Ver tudo no GitHub →</a>
+    </div>
+
+    <div class="plist">
+      <a class="prow" href="https://ordemflow-ten.vercel.app" data-reveal>
+        <span class="pnum">01</span>
+        <div>
+          <span class="ptag">SaaS · produto comercial</span>
+          <h3 class="pname">OrdemFlow</h3>
+          <p class="pdesc">Gestão para oficinas mecânicas. O mecânico fotografa o problema e monta o orçamento no celular; o cliente aprova item por item pelo WhatsApp, e cada decisão fica registrada com data, hora, IP e aparelho.</p>
+          <p class="pmeta">R$ 1.300 instalação + R$ 99/mês · RLS por oficina · mobile-first 48 px</p>
+        </div>
+        <div class="pstack"><b>Next.js 16</b><b>TypeScript</b><b>Tailwind v4</b><b>Supabase</b><b>PL/pgSQL</b></div>
+        <span class="parrow" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <a class="prow" href="https://crm-zeta-inky.vercel.app" data-reveal>
+        <span class="pnum">02</span>
+        <div>
+          <span class="ptag">Workspace · código aberto</span>
+          <h3 class="pname">CRM Interno</h3>
+          <p class="pdesc">Workspace estilo Bitrix24 para pequenas empresas: clientes, propostas em Kanban, contratos e agenda no mesmo lugar, multi-tenant desde o primeiro commit.</p>
+          <p class="pmeta">31 commits · 908 KB de TypeScript · Kanban com índice fracionário</p>
+        </div>
+        <div class="pstack"><b>React 19</b><b>TanStack</b><b>shadcn/ui</b><b>dnd-kit</b><b>Recharts</b></div>
+        <span class="parrow" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <a class="prow" href="https://avizo-three.vercel.app" data-reveal>
+        <span class="pnum">03</span>
+        <div>
+          <span class="ptag">IA · WhatsApp · assinatura</span>
+          <h3 class="pname">Avizo</h3>
+          <p class="pdesc">Check-in de bem-estar e detecção de golpe financeiro para idosos, contratado por um familiar. Sem resposta na janela definida, o cuidador recebe alerta; mensagem suspeita é classificada por IA em risco baixo, médio ou alto.</p>
+          <p class="pmeta">Golpe do Pix, do falso advogado e do falso sequestro · cobrança no Stripe</p>
+        </div>
+        <div class="pstack"><b>Next.js</b><b>Twilio</b><b>Stripe</b><b>LLM</b><b>cron</b></div>
+        <span class="parrow" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <a class="prow" href="https://rr-modas.vercel.app" data-reveal>
+        <span class="pnum">04</span>
+        <div>
+          <span class="ptag">E-commerce</span>
+          <h3 class="pname">R&amp;R Modas</h3>
+          <p class="pdesc">Loja de moda feminina organizada por estação, com o estoque tratado como regra de banco e não como detalhe de tela.</p>
+          <p class="pmeta">22 invariantes em SQL, incluindo a prova de que a loja não vende o que não tem</p>
+        </div>
+        <div class="pstack"><b>Next.js 16</b><b>Supabase CLI</b><b>Docker</b><b>Python</b></div>
+        <span class="parrow" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <a class="prow" href="https://cubas-metales-site.vercel.app" data-reveal>
+        <span class="pnum">05</span>
+        <div>
+          <span class="ptag">Site institucional + loja</span>
+          <h3 class="pname">Cubas Metales</h3>
+          <p class="pdesc">Site e loja de um fabricante de cubas em aço inox 430: catálogo com especificação técnica por produto e canal de orçamento no mesmo endereço.</p>
+          <p class="pmeta">25 commits do rascunho ao ar, em uma semana</p>
+        </div>
+        <div class="pstack"><b>HTML</b><b>TypeScript</b><b>Supabase</b><b>Vercel</b></div>
+        <span class="parrow" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <a class="prow" href="https://bolsaepoder.vercel.app" data-reveal>
+        <span class="pnum">06</span>
+        <div>
+          <span class="ptag">Automação com IA</span>
+          <h3 class="pname">Bolsa &amp; Poder</h3>
+          <p class="pdesc">Operação de conteúdo que publica três vezes por dia sobre mercado e política: apuração, roteiro, renderização de vídeo e narração, tudo por linha de comando.</p>
+          <p class="pmeta">41 commits · cenas em Chromium sincronizadas ao áudio com ffmpeg</p>
+        </div>
+        <div class="pstack"><b>Node.js</b><b>Claude Code</b><b>Chromium</b><b>ffmpeg</b><b>PowerShell</b></div>
+        <span class="parrow" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <div class="prow" data-reveal style="cursor:default">
+        <span class="pnum">07</span>
+        <div>
+          <span class="ptag">Mobile · Android e iOS</span>
+          <h3 class="pname">App da Associação</h3>
+          <p class="pdesc">Superapp de uma associação de engenharia, agronomia e geociências, nas duas plataformas a partir de um código. Emite carteira, declaração de associado e de quitação — e encaminha ao Confea/Crea o que é atribuição oficial, sem nunca imitá-la.</p>
+          <p class="pmeta">15 commits · 556 KB de TypeScript · protótipo de apresentação</p>
+        </div>
+        <div class="pstack"><b>React Native</b><b>Expo</b><b>TypeScript</b><b>PL/pgSQL</b></div>
+        <span class="parrow" aria-hidden="true" style="opacity:.35">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="servicos" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <h2>O que eu faço</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <span class="side">06 frentes</span>
+    </div>
+    <div class="svcs">
+      <div class="svc" data-reveal><span class="n">01</span><h3>SaaS multi-tenant</h3><p>Uma base, várias empresas, dados isolados por organização com Row Level Security no próprio Postgres. É assim que o OrdemFlow e o CRM funcionam.</p></div>
+      <div class="svc" data-reveal><span class="n">02</span><h3>Automação com IA</h3><p>Classificação de risco, triagem e publicação programada. IA onde ela decide algo útil, não como enfeite de marketing.</p></div>
+      <div class="svc" data-reveal><span class="n">03</span><h3>E-commerce</h3><p>Catálogo, estoque e checkout com as regras provadas no banco por teste de invariante, rodando a cada entrega.</p></div>
+      <div class="svc" data-reveal><span class="n">04</span><h3>WhatsApp e pagamentos</h3><p>Mensagem via Twilio, assinatura recorrente no Stripe, tarefa agendada por cron e aprovação por link com trilha de auditoria.</p></div>
+      <div class="svc" data-reveal><span class="n">05</span><h3>Aplicativo mobile</h3><p>Um código, Android e iOS, com React Native e Expo. Documentos, carteira digital e área do usuário.</p></div>
+      <div class="svc" data-reveal><span class="n">06</span><h3>Infra e operação</h3><p>Deploy, domínio, migrações versionadas, variáveis de ambiente e observabilidade. Quem constrói é quem mantém de pé.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="processo" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <h2>Processo &amp; stack</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <span class="side">como eu trabalho</span>
+    </div>
+    <div class="two">
+      <div class="blk" data-reveal>
+        <h3>Experiência &amp; stack</h3>
+        <div class="edu">
+          <div class="edu-i"><div><b>Produtos próprios em produção</b><small>OrdemFlow, Avizo, CRM — do banco ao faturamento</small></div><span class="yr">2026</span></div>
+          <div class="edu-i"><div><b>Sites e lojas para cliente</b><small>Cubas Metales, R&amp;R Modas e dois sites de serviço</small></div><span class="yr">2026</span></div>
+          <div class="edu-i"><div><b>Automação e infraestrutura</b><small>Pipelines, agendamento, deploy contínuo e manutenção</small></div><span class="yr">2025</span></div>
+        </div>
+        <div class="chips">
+          <b>Next.js</b><b>React 19</b><b>TypeScript</b><b>Tailwind</b><b>Supabase</b><b>PostgreSQL</b><b>RLS</b><b>PL/pgSQL</b><b>Stripe</b><b>Twilio</b><b>Expo</b><b>Node.js</b><b>Python</b><b>Docker</b><b>Vercel</b><b>Git</b><b>PowerShell</b><b>Claude Code</b>
+        </div>
+      </div>
+
+      <div class="blk" data-reveal>
+        <h3>Etapas do projeto</h3>
+        <div class="steps">
+          <div class="stp"><span class="ic">01</span><div><b>Diagnóstico</b><p>Entender o processo que dói, quem usa e o que hoje é feito à mão.</p></div></div>
+          <div class="stp"><span class="ic">02</span><div><b>Especificação</b><p>Escopo, telas e regras em documento versionado no repositório — com o que fica para depois.</p></div></div>
+          <div class="stp"><span class="ic">03</span><div><b>Construção</b><p>Entregas em partes utilizáveis, com tipos, lint e build verificados antes de cada uma.</p></div></div>
+          <div class="stp"><span class="ic">04</span><div><b>Produção</b><p>Deploy, domínio, banco com backup e chaves em contas no seu nome.</p></div></div>
+          <div class="stp"><span class="ic">05</span><div><b>Operação</b><p>Correção e evolução com o sistema rodando e gente de verdade usando.</p></div></div>
+        </div>
+      </div>
+
+      <div class="quote" data-reveal>
+        <p>Sistema bom não é o que impressiona na demonstração. É o que continua de pé na segunda-feira, com o cliente usando.</p>
+        <span class="sig">Elton Junior</span>
+        <a class="q-cta" href="https://wa.me/5511913633327?text=Ol%C3%A1%20Elton%2C%20quero%20conversar%20sobre%20um%20projeto.">Vamos conversar →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="github" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <h2>Repositórios</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <a class="side" href="https://github.com/Elton-Junior" style="text-decoration:none">@Elton-Junior →</a>
+    </div>
+    <p style="color:var(--muted);font-size:14.5px;margin-top:16px;max-width:66ch" data-reveal>Onze repositórios na conta. Os de cliente ficam privados; nesses, abro o código em chamada ou libero acesso de leitura a pedido.</p>
+    <div class="repos">
+      <div class="repo" data-reveal>
+        <a class="rname" href="https://github.com/Elton-Junior/crm">crm<small>Workspace multi-tenant: clientes, propostas, contratos, agenda</small></a>
+        <div class="lw"><div class="lbar"><i style="width:95.4%;background:var(--red)"></i><i style="width:3.9%;background:var(--muted)"></i><i style="width:.7%;background:var(--line)"></i></div><span class="llab">TypeScript 95% · PL/pgSQL 4%</span></div>
+        <span class="rc">31 commits</span><span class="vis pub">público</span>
+      </div>
+      <div class="repo" data-reveal>
+        <a class="rname" href="https://github.com/Elton-Junior/avizo">avizo<small>Check-in por WhatsApp e detecção de golpe por IA</small></a>
+        <div class="lw"><div class="lbar"><i style="width:87.6%;background:var(--red)"></i><i style="width:7.5%;background:var(--muted)"></i><i style="width:4.9%;background:var(--line)"></i></div><span class="llab">TypeScript 88% · PL/pgSQL 7%</span></div>
+        <span class="rc">13 commits</span><span class="vis pub">público</span>
+      </div>
+      <div class="repo" data-reveal>
+        <a class="rname" href="https://github.com/Elton-Junior/PROJETOS">PROJETOS<small>Repositório-índice dos meus projetos</small></a>
+        <div class="lw"><div class="lbar"><i style="width:100%;background:var(--line)"></i></div><span class="llab">documentação</span></div>
+        <span class="rc">6 commits</span><span class="vis pub">público</span>
+      </div>
+      <div class="repo" data-reveal>
+        <span class="rname">hubserviceorder<small>OrdemFlow: SaaS de gestão para oficinas mecânicas</small></span>
+        <div class="lw"><div class="lbar"><i style="width:82.8%;background:var(--red)"></i><i style="width:9.6%;background:var(--muted)"></i><i style="width:7.6%;background:var(--line)"></i></div><span class="llab">TypeScript 83% · PL/pgSQL 10%</span></div>
+        <span class="rc">em obra</span><span class="vis">privado</span>
+      </div>
+      <div class="repo" data-reveal>
+        <span class="rname">app-associacao<small>Superapp de associação profissional, iOS e Android</small></span>
+        <div class="lw"><div class="lbar"><i style="width:92.8%;background:var(--red)"></i><i style="width:7.1%;background:var(--muted)"></i></div><span class="llab">TypeScript 93% · PL/pgSQL 7%</span></div>
+        <span class="rc">15 commits</span><span class="vis">privado</span>
+      </div>
+      <div class="repo" data-reveal>
+        <span class="rname">rr-modas<small>E-commerce de moda feminina por estação</small></span>
+        <div class="lw"><div class="lbar"><i style="width:73.3%;background:var(--red)"></i><i style="width:14.3%;background:var(--ok)"></i><i style="width:12.4%;background:var(--muted)"></i></div><span class="llab">TypeScript 73% · Python 14% · PL/pgSQL 12%</span></div>
+        <span class="rc">8 commits</span><span class="vis">privado</span>
+      </div>
+      <div class="repo" data-reveal>
+        <span class="rname">cubas-metales-site<small>Site e loja de cubas em aço inox 430</small></span>
+        <div class="lw"><div class="lbar"><i style="width:91.1%;background:var(--muted)"></i><i style="width:7.8%;background:var(--red)"></i><i style="width:1.1%;background:var(--line)"></i></div><span class="llab">HTML 91% · TypeScript 8%</span></div>
+        <span class="rc">25 commits</span><span class="vis">privado</span>
+      </div>
+      <div class="repo" data-reveal>
+        <span class="rname">bolsaepoder<small>Pipeline de conteúdo com IA, três publicações por dia</small></span>
+        <div class="lw"><div class="lbar"><i style="width:89.1%;background:var(--muted)"></i><i style="width:8.2%;background:var(--red)"></i><i style="width:1.4%;background:var(--ok)"></i></div><span class="llab">HTML 89% · JavaScript 8% · PowerShell 1%</span></div>
+        <span class="rc">41 commits</span><span class="vis">privado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="perguntas" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <h2>Perguntas</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <span class="side">antes de chamar</span>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Quanto custa?</summary>
+        <p>Depende do escopo, e eu só falo número depois do diagnóstico. Para referência pública: o OrdemFlow, um SaaS completo com área do cliente final, é vendido a R$ 1.300 de instalação mais R$ 99 por mês. Um site com catálogo custa bem menos que um sistema multi-tenant com pagamento recorrente.</p>
+      </details>
+      <details>
+        <summary>De quem fica o código?</summary>
+        <p>Seu. Repositório, banco, domínio e chaves ficam em contas no seu nome. Se amanhã você quiser trocar de fornecedor, nada precisa ser reescrito nem resgatado comigo.</p>
+      </details>
+      <details>
+        <summary>Em quanto tempo fica pronto?</summary>
+        <p>Um site com catálogo saiu do zero ao ar em 25 commits dentro de uma semana. Um sistema com login, banco isolado por empresa e pagamento recorrente é medido em semanas e entregue em partes utilizáveis: você usa a primeira enquanto eu construo a segunda.</p>
+      </details>
+      <details>
+        <summary>Você usa IA para programar?</summary>
+        <p>Uso, como par de programação, e isso está escrito nos repositórios. O que não muda: a especificação vem antes, tipos e build são verificados a cada entrega, e estoque, pagamento e isolamento entre empresas são provados por teste no banco — não por confiança no gerador.</p>
+      </details>
+      <details>
+        <summary>Atende fora de São Paulo?</summary>
+        <p>Sim, remoto em todo o Brasil. Interface, moeda e documentos em português do Brasil por padrão, com banco na região de São Paulo para a latência ficar baixa aqui dentro.</p>
+      </details>
+      <details>
+        <summary>E depois de entregar, quem mantém?</summary>
+        <p>Eu, se você quiser: quem construiu conhece as migrações, as variáveis e os pontos frágeis. Também entrego documentado o suficiente para outro desenvolvedor assumir sem me procurar.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="close" id="contato">
+  <div class="wrap">
+    <p class="label" data-reveal>Próximo passo</p>
+    <h2 data-reveal style="margin-top:18px">Vamos<br>trabalhar <em>juntos</em></h2>
+    <div class="cgrid">
+      <div data-reveal>
+        <p style="color:var(--muted);font-size:15.5px;max-width:46ch">Me conte qual processo da sua empresa ainda é feito à mão. Na primeira conversa eu já digo se vale automatizar, o que daria para entregar primeiro e qual a ordem de grandeza do investimento. Sem proposta de vinte páginas.</p>
+        <div style="margin-top:26px">
+          <a class="btn btn-cta" href="https://wa.me/5511913633327?text=Ol%C3%A1%20Elton%2C%20quero%20um%20or%C3%A7amento.%20Meu%20projeto%20%C3%A9%3A%20">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2m0 1.67c4.55 0 8.25 3.7 8.25 8.24 0 4.55-3.7 8.25-8.25 8.25-1.5 0-2.97-.4-4.25-1.17l-.3-.18-3.12.82.83-3.04-.19-.31a8.19 8.19 0 0 1-1.25-4.37c0-4.54 3.7-8.24 8.28-8.24m-3.6 4.1c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.43 1.03 2.6c.12.17 1.75 2.79 4.23 3.8 2.06.84 2.48.67 2.93.63.44-.04 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.23-.17-.48-.29-.25-.12-1.44-.71-1.66-.79-.23-.08-.39-.12-.56.13-.17.25-.65.83-.8 1-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.1-.51.12-.12.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.35-.03-.5-.08-.14-.56-1.37-.77-1.87-.17-.4-.35-.41-.5-.42h-.4Z"/></svg>
+            Chamar no WhatsApp agora
+          </a>
+        </div>
+      </div>
+
+      <div class="crows" data-reveal>
+        <div class="ci">
+          <span class="sq" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2m0 1.67c4.55 0 8.25 3.7 8.25 8.24 0 4.55-3.7 8.25-8.25 8.25-1.5 0-2.97-.4-4.25-1.17l-.3-.18-3.12.82.83-3.04-.19-.31a8.19 8.19 0 0 1-1.25-4.37c0-4.54 3.7-8.24 8.28-8.24m-3.6 4.1c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.43 1.03 2.6c.12.17 1.75 2.79 4.23 3.8 2.06.84 2.48.67 2.93.63.44-.04 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.23-.17-.48-.29-.25-.12-1.44-.71-1.66-.79-.23-.08-.39-.12-.56.13-.17.25-.65.83-.8 1-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.1-.51.12-.12.29-.33.43-.5.14-.17.19-.29.29-.48.1-.19.05-.35-.03-.5-.08-.14-.56-1.37-.77-1.87-.17-.4-.35-.41-.5-.42h-.4Z"/></svg></span>
+          <div><b>WhatsApp</b><span>(11) 91363-3327</span></div>
+          <button class="copy" type="button" data-v="+5511913633327">Copiar</button>
+        </div>
+        <div class="ci">
+          <span class="sq" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
+          <div><b>E-mail</b><span>ensjuninho@gmail.com</span></div>
+          <button class="copy" type="button" data-v="ensjuninho@gmail.com">Copiar</button>
+        </div>
+        <a class="ci" href="https://github.com/Elton-Junior">
+          <span class="sq" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.72c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.84c.85 0 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.81-4.58 5.06.36.32.68.95.68 1.91l-.01 2.84c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></span>
+          <div><b>GitHub</b><span>github.com/Elton-Junior</span></div>
+        </a>
+        <div class="ci">
+          <span class="sq" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-10a7 7 0 1 1 14 0c0 4.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg></span>
+          <div><b>Atendimento</b><span>Remoto, todo o Brasil</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Elton Junior · T.I. e automação com IA</span>
+    <span class="fr">
+      <a href="https://github.com/Elton-Junior">GitHub</a>
+      <a href="https://wa.me/5511913633327">WhatsApp</a>
+      <span>Dados lidos da API do GitHub e da Vercel em 20/10/2026</span>
+    </span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduced = false;
+  try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
+  /* revelação ao rolar — estado em repouso é visível; o estado escondido só entra se houver suporte */
+  if (!reduced && 'IntersectionObserver' in window) {
+    var els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    els.forEach(function(el, i){ el.classList.add('pre'); el.style.transitionDelay = (i % 6) * 55 + 'ms'; });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.remove('pre'); en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+    els.forEach(function(el){ io.observe(el); });
+  }
+
+  /* contadores */
+  if (!reduced && 'IntersectionObserver' in window) {
+    var nums = Array.prototype.slice.call(document.querySelectorAll('[data-count]'));
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        var el = en.target, target = parseInt(el.dataset.count, 10), t0 = null;
+        io2.unobserve(el);
+        function tick(ts){
+          if (t0 === null) t0 = ts;
+          var p = Math.min((ts - t0) / 900, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: .5 });
+    nums.forEach(function(el){ io2.observe(el); });
+  }
+
+  /* copiar contato */
+  document.querySelectorAll('.copy').forEach(function(b){
+    var original = b.textContent;
+    b.addEventListener('click', function(){
+      var v = b.dataset.v;
+      function restore(){ setTimeout(function(){ b.textContent = original; }, 2200); }
+      function fallback(){
+        var host = b.previousElementSibling ? b.previousElementSibling.querySelector('span') : null;
+        if (host) {
+          try {
+            var r = document.createRange(); r.selectNodeContents(host);
+            var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+          } catch (e) {}
+        }
+        b.textContent = 'Selecionado'; restore();
+      }
+      try {
+        navigator.clipboard.writeText(v).then(function(){ b.textContent = 'Copiado'; restore(); }, fallback);
+      } catch (e) { fallback(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
