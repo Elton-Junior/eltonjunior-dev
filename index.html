@@ -53,7 +53,9 @@ a{color:inherit}
 .avail{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--ink)}
 .avail i{width:7px;height:7px;border-radius:50%;background:var(--ok);display:block;animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(47,191,113,.55)}50%{box-shadow:0 0 0 6px rgba(47,191,113,0)}}
-header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(10,10,11,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.bar{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(10,10,11,.18);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid rgba(255,255,255,.07);transition:background .3s,border-color .3s}
+header.bar.solid{background:rgba(10,10,11,.86);border-bottom-color:var(--line)}
+section[id]{scroll-margin-top:66px}
 header.bar .wrap{display:flex;align-items:center;gap:16px;padding-block:13px}
 .mark{font-family:var(--display);font-size:15px;text-transform:uppercase;text-decoration:none;letter-spacing:-.01em}
 .mark span{color:var(--red)}
@@ -78,12 +80,12 @@ nav.links a:hover{color:var(--red)}
 .bigword{display:flex;justify-content:space-between;overflow:hidden;line-height:.84;margin-bottom:clamp(-16px,-1.4vw,-8px)}
 .bigword span{display:block;font-family:var(--display);text-transform:uppercase;font-size:clamp(30px,10.4vw,150px);color:var(--red);letter-spacing:-.02em;animation:rise 1s cubic-bezier(.16,.84,.26,1) both;animation-delay:calc(var(--i) * 55ms)}
 @keyframes rise{from{transform:translateY(106%)}to{transform:translateY(0)}}
-.hero-grid{display:grid;grid-template-columns:1.05fr 1fr 210px;gap:clamp(20px,3vw,40px);align-items:start;margin-top:clamp(18px,2.4vw,30px)}
+.hero-grid{display:grid;grid-template-columns:1fr 240px;gap:clamp(20px,3vw,40px);align-items:start;margin-top:clamp(18px,2.4vw,30px)}
 .hero-grid>*{min-width:0}
-@media (max-width:1020px){.hero-grid{grid-template-columns:1fr 1fr}.hero-stats{grid-column:1/-1;flex-direction:row!important;flex-wrap:wrap}}
+@media (max-width:1020px){.hero-grid{grid-template-columns:1fr}.hero-stats{grid-column:1/-1;flex-direction:row!important;flex-wrap:wrap}}
 @media (max-width:760px){.hero-grid{grid-template-columns:1fr}}
 .hello{font-family:var(--body);font-style:italic;font-weight:500;font-size:clamp(17px,2vw,23px);color:var(--muted);animation:fade .8s ease both;animation-delay:.42s}
-h1.name{font-family:var(--display);text-transform:uppercase;font-size:clamp(34px,5.6vw,64px);letter-spacing:-.03em;line-height:.94;margin-top:6px;animation:fade .8s ease both;animation-delay:.5s}
+.name{font-family:var(--display);text-transform:uppercase;font-size:clamp(34px,5.6vw,64px);letter-spacing:-.03em;line-height:.94;margin-top:6px;animation:fade .8s ease both;animation-delay:.5s}
 .role{font-family:var(--mono);font-size:clamp(11px,1.3vw,13px);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-top:14px;animation:fade .8s ease both;animation-delay:.58s}
 .hero-p{color:var(--muted);font-size:15.5px;margin-top:16px;max-width:46ch;animation:fade .8s ease both;animation-delay:.64s}
 @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -250,7 +252,7 @@ footer.foot a:hover{color:var(--red)}
 .fr{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap}
 
 /* ---- titulos em Gugi (um peso so: nada de negrito sintetico) ---- */
-h1,h2,h3,.mark,.bigword span,.hstat b,.pnum,.pname,summary,.d-av,.close h2{font-weight:400}
+h1,h2,h3,.mark,.mega,.hstat b,.pnum,.pname,summary,.d-av,.close h2{font-weight:400}
 h1,h2{letter-spacing:-.02em}
 
 /* ---- camada futurista: grid em perspectiva, particulas, holofote no cursor ---- */
@@ -296,7 +298,7 @@ h1,h2{letter-spacing:-.02em}
 .console::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
 .console::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
 /* glitch nas letras da palavra display */
-.bigword span.gl{animation:none;transform:translate(var(--gx,3px),0) skewX(var(--gs,-8deg));filter:drop-shadow(-4px 0 0 rgba(0,229,255,.55)) drop-shadow(4px 0 0 rgba(225,27,44,.9))}
+.mega .ln>span.gl{animation:none;transform:translate(var(--gx,3px),0) skewX(var(--gs,-8deg));filter:drop-shadow(-4px 0 0 rgba(0,229,255,.55)) drop-shadow(4px 0 0 rgba(225,27,44,.9))}
 /* varredura de luz nas linhas de projeto */
 .prow::after{content:"";position:absolute;top:0;bottom:0;left:-30%;width:30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);transform:skewX(-20deg);opacity:0;z-index:1;pointer-events:none}
 .prow:hover::after{animation:sweep .9s ease}
@@ -306,6 +308,33 @@ h1,h2{letter-spacing:-.02em}
 .btn{will-change:transform}
 .eng{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid rgba(225,27,44,.45);background:rgba(225,27,44,.08);padding:7px 11px;border-radius:2px;animation:fade .8s ease both;animation-delay:.6s}
 .eng svg{color:var(--red)}
+/* ---- palco (estrutura do modelo cinematografico) ---- */
+.stage{position:relative;height:100vh;height:100svh;min-height:640px;overflow:hidden;display:flex;align-items:flex-end;background:#0A0A0B;isolation:isolate}
+.stage-v{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;object-position:64% 50%;z-index:-2;transform:translate3d(var(--vx,0),var(--vy,0),0) scale(1.02);transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.stage-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,#0A0A0B 0%,rgba(10,10,11,.7) 26%,rgba(10,10,11,0) 62%),linear-gradient(90deg,rgba(10,10,11,.94) 0%,rgba(10,10,11,.7) 38%,rgba(10,10,11,0) 66%)}
+.stage-in{width:100%;padding-bottom:clamp(36px,7vh,80px)}
+.stage-k{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding:8px 13px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:2px;animation:fade .8s ease both;animation-delay:.2s}
+.stage-k i{width:7px;height:7px;border-radius:50%;background:var(--ok);display:block;box-shadow:0 0 10px var(--ok)}
+.mega{font-family:var(--display);text-transform:uppercase;font-size:clamp(38px,6.4vw,108px);line-height:.94;letter-spacing:-.02em;margin-top:22px}
+.mega .ln{display:block;overflow:hidden;padding-block:.04em}
+.mega .ln>span{display:block;animation:rise 1.1s cubic-bezier(.16,.84,.26,1) both}
+.mega .ln:nth-child(2)>span{animation-delay:.12s}.mega .ln:nth-child(3)>span{animation-delay:.24s}
+.mega em{font-style:normal;color:var(--red);text-shadow:0 0 40px rgba(225,27,44,.45)}
+.stage-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;margin-top:26px;animation:fade .9s ease both;animation-delay:.55s}
+.stage-p{color:#C9C8CE;font-size:clamp(15px,1.4vw,17px);max-width:46ch}
+.stage-cta{display:flex;flex-wrap:wrap;gap:11px}
+.btn-glass{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#fff;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.btn-glass:hover{background:rgba(255,255,255,.12)}
+.sound{position:absolute;right:clamp(16px,3vw,40px);top:92px;display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding:9px 13px;border-radius:40px;cursor:pointer}
+.sound .eq{display:flex;align-items:flex-end;gap:2px;height:12px}
+.sound .eq i{width:2px;height:3px;background:var(--red);display:block}
+.sound[aria-pressed="true"] .eq i{animation:eq .9s ease-in-out infinite alternate}
+.sound .eq i:nth-child(2){animation-delay:.2s!important}.sound .eq i:nth-child(3){animation-delay:.45s!important}.sound .eq i:nth-child(4){animation-delay:.1s!important}
+@keyframes eq{from{height:3px}to{height:12px}}
+.cue{position:absolute;right:clamp(16px,3vw,40px);bottom:clamp(36px,7vh,80px);display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);text-decoration:none;writing-mode:vertical-rl}
+.cue i{width:1px;height:56px;background:linear-gradient(var(--red),transparent);display:block;animation:cue 1.8s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media (max-width:760px){.stage-v{object-position:62% 40%}.cue{display:none}.stage-k{font-size:9px;letter-spacing:.14em}.sound{top:76px}}
 /* barra de progresso de leitura */
 .progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--red-deep),var(--red),#ff6b77);z-index:100;box-shadow:0 0 12px var(--red)}
 [data-reveal].pre{opacity:0;transform:translateY(22px)}
@@ -321,13 +350,6 @@ img{max-width:100%}
 </style>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="wrap">
-    <span>Elton Junior — T.I. &amp; Automação com IA</span>
-    <span class="avail"><i aria-hidden="true"></i>Disponível para projetos</span>
-  </div>
-</div>
 
 <header class="bar">
   <div class="wrap">
@@ -345,18 +367,35 @@ img{max-width:100%}
 
 <div class="progress" aria-hidden="true"></div>
 
-<section class="hero" id="top">
+<section class="stage" id="top">
+  <video class="stage-v" autoplay muted loop playsinline preload="auto" poster="hero.jpg" aria-hidden="true">
+    <source src="hero.webm" type="video/webm">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+  <div class="stage-shade" aria-hidden="true"></div>
+  <div class="wrap stage-in">
+    <p class="stage-k"><i aria-hidden="true"></i>Elton Junior · Engenheiro da Computação · Disponível para projetos</p>
+    <h1 class="mega"><span class="ln"><span>Sistemas em</span></span><span class="ln"><span>produção.</span></span><span class="ln"><span><em>Não protótipos.</em></span></span></h1>
+    <div class="stage-row">
+      <p class="stage-p">SaaS, e-commerce e automação com IA para pequenas e médias empresas. Onze sistemas construídos, dez no ar agora.</p>
+      <div class="stage-cta">
+        <a class="btn btn-cta" href="https://wa.me/5511913633327?text=Ol%C3%A1%20Elton%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20falar%20sobre%20um%20projeto.">Agendar conversa</a>
+        <a class="btn btn-glass" href="#projetos">Ver projetos</a>
+      </div>
+    </div>
+  </div>
+  <button class="sound" type="button" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sound-l">Som off</span></button>
+  <a class="cue" href="#sobre" aria-label="Rolar para a apresentação"><span>Role</span><i aria-hidden="true"></i></a>
+</section>
+
+<section class="hero" id="sobre">
   <canvas id="fx" aria-hidden="true"></canvas>
   <div class="scan" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="bigword" aria-label="Portfólio">
-      <span style="--i:0" aria-hidden="true">P</span><span style="--i:1" aria-hidden="true">O</span><span style="--i:2" aria-hidden="true">R</span><span style="--i:3" aria-hidden="true">T</span><span style="--i:4" aria-hidden="true">F</span><span style="--i:5" aria-hidden="true">Ó</span><span style="--i:6" aria-hidden="true">L</span><span style="--i:7" aria-hidden="true">I</span><span style="--i:8" aria-hidden="true">O</span>
-    </div>
-
     <div class="hero-grid">
       <div>
         <p class="hello">Olá, eu sou</p>
-        <h1 class="name">Elton<br>Junior</h1>
+        <h2 class="name">Elton<br>Junior</h2>
         <span class="eng"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>Engenheiro da Computação</span>
         <p class="role"><span data-scramble>Especialista em T.I. &amp; Automação com IA</span><span class="cur" aria-hidden="true"></span></p>
         <p class="hero-p">Construo SaaS, e-commerce e automação para pequenas e médias empresas. Não entrego protótipo: entrego sistema com endereço público, banco de dados e manutenção. Tudo o que está nesta página está no ar agora.</p>
@@ -368,12 +407,6 @@ img{max-width:100%}
           <a class="btn btn-ghost" href="#projetos">Ver projetos</a>
         </div>
         <span class="worldwide"><i aria-hidden="true"></i>Atendimento remoto · Brasil</span>
-      </div>
-
-      <div class="orb" aria-hidden="true">
-        <span class="hud"></span>
-        <canvas id="orb"></canvas>
-        <span class="cap"><b>11</b> sistemas em órbita</span>
       </div>
 
       <div class="console" aria-label="Endereços em produção">
@@ -1030,7 +1063,8 @@ img{max-width:100%}
   if (reduce) return;
 
   /* glitch: de tempos em tempos uma letra da palavra display treme */
-  var letras = document.querySelectorAll('.bigword span');
+  var letras = document.querySelectorAll('.mega .ln > span');
+  if (!letras.length) return;
   setTimeout(function glitch(){
     var el = letras[(Math.random() * letras.length) | 0];
     el.style.setProperty('--gx', ((Math.random() - .5) * 12).toFixed(1) + 'px');
@@ -1068,6 +1102,30 @@ img{max-width:100%}
       b.addEventListener('pointerleave', function(){ b.style.transform = ''; });
     });
   }
+})();
+</script>
+<script>
+/* palco: som, menu de vidro que solidifica, parallax do video */
+(function(){
+  var v = document.querySelector('.stage-v'), bt = document.querySelector('.sound'), bar = document.querySelector('header.bar');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce && v) { v.removeAttribute('autoplay'); v.pause(); }
+  bt.addEventListener('click', function(){
+    v.muted = !v.muted;
+    if (!v.muted) v.play();
+    bt.setAttribute('aria-pressed', String(!v.muted));
+    bt.querySelector('.sound-l').textContent = v.muted ? 'Som off' : 'Som on';
+  });
+  function onScroll(){ bar.classList.toggle('solid', scrollY > 40); }
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  if (reduce || !matchMedia('(pointer:fine)').matches) return;
+  var st = document.querySelector('.stage');
+  st.addEventListener('pointermove', function(e){
+    var r = st.getBoundingClientRect();
+    st.style.setProperty('--vx', (((e.clientX - r.left) / r.width - .5) * -28).toFixed(1) + 'px');
+    st.style.setProperty('--vy', (((e.clientY - r.top) / r.height - .5) * -18).toFixed(1) + 'px');
+  });
+  st.addEventListener('pointerleave', function(){ st.style.setProperty('--vx', '0px'); st.style.setProperty('--vy', '0px'); });
 })();
 </script>
 </body>
