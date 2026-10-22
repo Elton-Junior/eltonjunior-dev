@@ -1,0 +1,45 @@
+{
+  "checked_at": "2026-10-22T02:52:48.084Z",
+  "sites": [
+    {
+      "url": "https://ordemflow-ten.vercel.app",
+      "status": 200,
+      "ms": 1315
+    },
+    {
+      "url": "https://crm-zeta-inky.vercel.app",
+      "status": 200,
+      "ms": 2117
+    },
+    {
+      "url": "https://avizo-three.vercel.app",
+      "status": 200,
+      "ms": 1164
+    },
+    {
+      "url": "https://rr-modas.vercel.app",
+      "status": 200,
+      "ms": 1041
+    },
+    {
+      "url": "https://cubas-metales-site.vercel.app",
+      "status": 200,
+      "ms": 8847
+    },
+    {
+      "url": "https://bolsaepoder.vercel.app",
+      "status": 200,
+      "ms": 552
+    },
+    {
+      "url": "https://jefersonrodrigues-adv.vercel.app",
+      "status": 200,
+      "ms": 466
+    },
+    {
+      "url": "https://grevillas.vercel.app",
+      "status": 200,
+      "ms": 508
+    }
+  ]
+}

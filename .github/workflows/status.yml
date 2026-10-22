@@ -1,0 +1,26 @@
+name: Status dos sistemas em producao
+
+on:
+  schedule:
+    - cron: '0 9 * * *' # 06h em Brasilia
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/check-status.mjs
+      - name: Commit status.json
+        run: |
+          git config user.name "status-bot"
+          git config user.email "status-bot@users.noreply.github.com"
+          git add status.json
+          git diff --cached --quiet || git commit -m "Status diario dos enderecos em producao"
+          git push

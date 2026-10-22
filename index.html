@@ -16,7 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A0B'/%3E%3Cpath d='M9 8h14v4H13v4h9v4h-9v4h10v4H9z' fill='%23E11B2C'/%3E%3C/svg%3E">
 <title>Portfólio Elton Junior</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
 <style>
 /* Layout: revista editorial preto e vermelho — palavra display gigante no fundo, painel de produção por cima, projetos numerados em linhas de catálogo. */
 :root{
@@ -24,8 +26,8 @@
   --ink:#F4F3F1; --muted:#9A9AA3; --faint:#6B6B75;
   --red:#E11B2C; --red-ink:#FFFFFF; --red-deep:#8C0E1B; --red-glow:rgba(225,27,44,.16);
   --ok:#2FBF71;
-  --display:'Archivo Black','Arial Black',Impact,sans-serif;
-  --body:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --display:'Manrope','Helvetica Neue',Arial,sans-serif;
+  --body:'Inter','Helvetica Neue',Arial,sans-serif;
   --mono:'JetBrains Mono','Cascadia Mono',Consolas,monospace;
   --maxw:1180px;
   color-scheme:dark;
@@ -256,9 +258,41 @@ footer.foot a{color:var(--muted);text-decoration:none}
 footer.foot a:hover{color:var(--red)}
 .fr{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap}
 
+/* ---- titulos em Manrope: o peso que o Archivo Black trazia sozinho ---- */
+h1,h2,h3,.mark,.bigword span,.hstat b,.pnum,.pname,summary,.d-av{font-weight:800}
+h1,h2{letter-spacing:-.02em}
+
+/* ---- camada futurista: grid em perspectiva, particulas, holofote no cursor ---- */
+#fx{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.9}
+.hero::before{content:"";position:absolute;left:-50%;right:-50%;bottom:-2px;height:58%;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(225,27,44,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(225,27,44,.28) 1px,transparent 1px);
+  background-size:64px 64px;transform:perspective(520px) rotateX(62deg);transform-origin:50% 100%;
+  -webkit-mask-image:linear-gradient(to top,#000 10%,transparent 85%);mask-image:linear-gradient(to top,#000 10%,transparent 85%);
+  animation:grid-run 2.8s linear infinite}
+@keyframes grid-run{from{background-position:0 0}to{background-position:0 64px}}
+.hero::after{background:radial-gradient(420px circle at var(--mx,72%) var(--my,18%),rgba(225,27,44,.22),transparent 70%),radial-gradient(60% 55% at 72% 18%,var(--red-glow),transparent 70%);z-index:1}
+.scan{position:absolute;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);mix-blend-mode:overlay}
+.bigword span{background:linear-gradient(180deg,#ff3b4b 0%,var(--red) 45%,var(--red-deep) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bigword{padding-top:.14em}
+.role .cur{display:inline-block;width:.6em;height:1em;background:var(--red);vertical-align:-2px;margin-left:4px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.console{box-shadow:0 0 0 1px rgba(225,27,44,.08),0 30px 80px -30px rgba(225,27,44,.35)}
+.crow .st i{box-shadow:0 0 0 0 rgba(47,191,113,.6);animation:ping 2s ease-out infinite}
+.crow .st.down{color:var(--red)}.crow .st.down i{background:var(--red);animation:none}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(47,191,113,.6)}80%,100%{box-shadow:0 0 0 7px rgba(47,191,113,0)}}
+/* cartoes com brilho onde o cursor esta */
+.svc::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(260px circle at var(--cx,50%) var(--cy,50%),rgba(225,27,44,.16),transparent 65%)}
+.svc:hover::before{opacity:1}
+.svc>*{position:relative}
+.marq{position:relative}
+.marq::before,.marq::after{content:"";position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.marq::before{left:0;background:linear-gradient(90deg,#000,transparent)}.marq::after{right:0;background:linear-gradient(-90deg,#000,transparent)}
+/* barra de progresso de leitura */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--red-deep),var(--red),#ff6b77);z-index:100;box-shadow:0 0 12px var(--red)}
 [data-reveal].pre{opacity:0;transform:translateY(22px)}
 [data-reveal].in{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal].pre{opacity:1!important;transform:none!important}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal].pre{opacity:1!important;transform:none!important}#fx,.scan{display:none}}
 </style>
 <style>
 html{-webkit-text-size-adjust:100%}
@@ -291,7 +325,11 @@ img{max-width:100%}
   </div>
 </header>
 
+<div class="progress" aria-hidden="true"></div>
+
 <section class="hero" id="top">
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div class="scan" aria-hidden="true"></div>
   <div class="wrap">
     <div class="bigword" aria-label="Portfólio">
       <span style="--i:0" aria-hidden="true">P</span><span style="--i:1" aria-hidden="true">O</span><span style="--i:2" aria-hidden="true">R</span><span style="--i:3" aria-hidden="true">T</span><span style="--i:4" aria-hidden="true">F</span><span style="--i:5" aria-hidden="true">Ó</span><span style="--i:6" aria-hidden="true">L</span><span style="--i:7" aria-hidden="true">I</span><span style="--i:8" aria-hidden="true">O</span>
@@ -301,7 +339,7 @@ img{max-width:100%}
       <div>
         <p class="hello">Olá, eu sou</p>
         <h1 class="name">Elton<br>Junior</h1>
-        <p class="role">Especialista em T.I. &amp; Automação com IA</p>
+        <p class="role"><span data-scramble>Especialista em T.I. &amp; Automação com IA</span><span class="cur" aria-hidden="true"></span></p>
         <p class="hero-p">Construo SaaS, e-commerce e automação para pequenas e médias empresas. Não entrego protótipo: entrego sistema com endereço público, banco de dados e manutenção. Tudo o que está nesta página está no ar agora.</p>
         <div class="hero-cta">
           <a class="btn btn-cta" href="https://wa.me/5511913633327?text=Ol%C3%A1%20Elton%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20falar%20sobre%20um%20projeto.">
@@ -331,7 +369,7 @@ img{max-width:100%}
         <div class="crow"><a href="https://bolsaepoder.vercel.app">bolsaepoder.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
         <div class="crow"><a href="https://jefersonrodrigues-adv.vercel.app">jefersonrodrigues-adv.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
         <div class="crow"><a href="https://grevillas.vercel.app">grevillas.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
-        <div class="console-foot">Checado em 20/10/2026 · oito endereços, todos responderam 200</div>
+        <div class="console-foot" data-status-foot>Checado em 20/10/2026 · oito endereços, todos responderam 200</div>
       </div>
 
       <div class="hero-stats">
@@ -768,6 +806,104 @@ img{max-width:100%}
       } catch (e) { fallback(); }
     });
   });
+})();
+</script>
+<script>
+/* camada futurista: particulas, holofote, texto embaralhado, status ao vivo, progresso */
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hero = document.querySelector('.hero');
+
+  /* barra de progresso */
+  var bar = document.querySelector('.progress');
+  function onScroll(){
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+    bar.style.setProperty('--p', max > 0 ? (h.scrollTop / max).toFixed(4) : 0);
+  }
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* holofote no hero e nos cartoes de servico */
+  hero.addEventListener('pointermove', function(e){
+    var r = hero.getBoundingClientRect();
+    hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+  document.querySelectorAll('.svc').forEach(function(c){
+    c.addEventListener('pointermove', function(e){
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--cx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--cy', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  /* o cargo se monta a partir de caracteres aleatorios */
+  var sc = document.querySelector('[data-scramble]');
+  if (sc && !reduce) {
+    var final = sc.textContent, chars = '01<>/{}[]#$%&*+=_', frame = 0;
+    sc.parentNode.setAttribute('aria-label', final);
+    setTimeout(function step(){
+      var out = '';
+      for (var i = 0; i < final.length; i++) {
+        out += (i < frame / 2 || final[i] === ' ') ? final[i] : chars[(Math.random() * chars.length) | 0];
+      }
+      sc.textContent = out;
+      if (frame++ < final.length * 2) requestAnimationFrame(step); else sc.textContent = final;
+    }, 650);
+  }
+
+  /* status dos enderecos: status.json e regerado todo dia pelo GitHub Actions */
+  fetch('status.json', { cache: 'no-store' }).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if (!d || !d.sites) return;
+    var ok = 0;
+    d.sites.forEach(function(s){
+      var a = document.querySelector('.crow a[href="' + s.url + '"]');
+      if (!a) return;
+      var st = a.parentNode.querySelector('.st');
+      if (s.status === 200) ok++; else st.classList.add('down');
+      st.innerHTML = '<i aria-hidden="true"></i>' + (s.status || 'off');
+    });
+    var dt = new Date(d.checked_at);
+    document.querySelector('[data-status-foot]').textContent = 'Checado automaticamente em ' + dt.toLocaleDateString('pt-BR') + ' às ' +
+      dt.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) + ' · ' + ok + ' de ' + d.sites.length + ' responderam 200';
+  }).catch(function(){});
+
+  /* particulas conectadas atras do hero */
+  var cv = document.getElementById('fx');
+  if (!cv || reduce) return;
+  var ctx = cv.getContext('2d'), dpr = Math.min(devicePixelRatio || 1, 2), W, H, pts = [], mouse = { x: -999, y: -999 }, visible = true;
+  function size(){
+    W = hero.clientWidth; H = hero.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var n = Math.round(Math.min(90, W * H / 16000));
+    pts = [];
+    for (var i = 0; i < n; i++) pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35 });
+  }
+  hero.addEventListener('pointermove', function(e){ var r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+  hero.addEventListener('pointerleave', function(){ mouse.x = mouse.y = -999; });
+  new IntersectionObserver(function(es){ visible = es[0].isIntersecting; }).observe(hero);
+  function draw(){
+    requestAnimationFrame(draw);
+    if (!visible) return;
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      var dm = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+      if (dm < 140) { p.x += (p.x - mouse.x) / dm * .8; p.y += (p.y - mouse.y) / dm * .8; }
+      ctx.fillStyle = 'rgba(225,27,44,.75)';
+      ctx.fillRect(p.x - 1, p.y - 1, 2, 2);
+      for (var j = i + 1; j < pts.length; j++) {
+        var q = pts[j], d = Math.hypot(p.x - q.x, p.y - q.y);
+        if (d < 120) {
+          ctx.strokeStyle = 'rgba(225,27,44,' + (.22 * (1 - d / 120)).toFixed(3) + ')';
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+        }
+      }
+    }
+  }
+  size(); addEventListener('resize', size); draw();
 })();
 </script>
 </body>
