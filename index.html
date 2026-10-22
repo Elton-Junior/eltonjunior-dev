@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gugi&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@500&text=%C3%81%C3%80%C3%82%C3%83%C3%89%C3%8A%C3%8D%C3%93%C3%94%C3%95%C3%9A%C3%87%C3%A1%C3%A0%C3%A2%C3%A3%C3%A9%C3%AA%C3%AD%C3%B3%C3%B4%C3%B5%C3%BA%C3%A7&display=swap">
 <style>
 /* Layout: revista editorial preto e vermelho — palavra display gigante no fundo, painel de produção por cima, projetos numerados em linhas de catálogo. */
 :root{
@@ -25,7 +26,7 @@
   --ink:#F4F3F1; --muted:#9A9AA3; --faint:#6B6B75;
   --red:#E11B2C; --red-ink:#FFFFFF; --red-deep:#8C0E1B; --red-glow:rgba(225,27,44,.16);
   --ok:#2FBF71;
-  --display:'Gugi','Helvetica Neue',Arial,sans-serif;
+  --display:'Gugi','Saira','Helvetica Neue',Arial,sans-serif;
   --body:'Inter','Helvetica Neue',Arial,sans-serif;
   --mono:'JetBrains Mono','Cascadia Mono',Consolas,monospace;
   --maxw:1180px;
@@ -335,11 +336,51 @@ h1,h2{letter-spacing:-.02em}
 .cue i{width:1px;height:56px;background:linear-gradient(var(--red),transparent);display:block;animation:cue 1.8s ease-in-out infinite;transform-origin:top}
 @keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 @media (max-width:760px){.stage-v{object-position:62% 40%}.cue{display:none}.stage-k{font-size:9px;letter-spacing:.14em}.sound{top:76px}}
+/* ---- secoes animadas ---- */
+.band{position:relative;overflow:hidden;isolation:isolate}
+.band>.wrap{position:relative;z-index:1}
+.band::before{content:"";position:absolute;inset:-64px 0 0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(225,27,44,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(225,27,44,.07) 1px,transparent 1px);background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent 75%);mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent 75%);
+  animation:band-grid 9s linear infinite}
+@keyframes band-grid{to{transform:translateY(64px)}}
+.band::after{content:"";position:absolute;width:620px;height:620px;border-radius:50%;z-index:-1;pointer-events:none;top:-160px;right:-200px;
+  background:radial-gradient(circle,rgba(225,27,44,.16),transparent 65%);animation:drift 16s ease-in-out infinite alternate}
+.band:nth-of-type(even)::after{right:auto;left:-220px;animation-duration:19s}
+@keyframes drift{to{transform:translate(-120px,180px) scale(1.25)}}
+/* entrada em cascata saindo do desfoque */
+/* linha do titulo se desenha e um ponto de luz corre por ela */
+.sec-head .rule{position:relative;transform-origin:left;transform:scaleX(0);transition:transform 1.4s cubic-bezier(.2,.7,.3,1) .2s;background:linear-gradient(90deg,var(--red),var(--line) 40%)}
+.sec-head.in .rule,.sec-head:not(.pre) .rule{transform:scaleX(1)}
+.sec-head .rule::after{content:"";position:absolute;top:-2px;left:0;width:40px;height:5px;border-radius:3px;background:var(--red);box-shadow:0 0 14px var(--red);animation:runner 3.6s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes runner{0%{left:0;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:calc(100% - 40px);opacity:0}}
+/* previa real do site ao passar o mouse no projeto */
+.peek{position:fixed;left:0;top:0;width:340px;aspect-ratio:16/10;z-index:60;pointer-events:none;border:1px solid rgba(225,27,44,.6);background:#000;
+  box-shadow:0 30px 80px -20px rgba(225,27,44,.45),0 0 0 6px rgba(10,10,11,.6);clip-path:inset(0 0 100% 0);transition:clip-path .45s cubic-bezier(.2,.7,.3,1);overflow:hidden}
+.peek.on{clip-path:inset(0 0 0 0)}
+.peek img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.peek::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.04) 0 1px,transparent 1px 3px)}
+.peek b{position:absolute;left:8px;bottom:8px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;background:var(--red);color:#fff;padding:3px 7px;z-index:1}
+@media (pointer:coarse){.peek{display:none}}
+/* cartoes em 3D */
+.svc,.blk{transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.3,1),background .25s}
+.svc:hover{z-index:2;box-shadow:0 24px 60px -24px rgba(225,27,44,.45)}
+/* contato fecha com o mesmo video do palco */
+.close-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%;opacity:.4;z-index:0;
+  -webkit-mask-image:linear-gradient(90deg,transparent 10%,#000 70%);mask-image:linear-gradient(90deg,transparent 10%,#000 70%)}
+.marq-track span em{text-shadow:0 0 12px var(--red)}
+/* ilustracoes futuristas atras de cada secao (fundo preto some no modo screen) */
+.bgart{position:absolute;left:0;right:0;top:-80px;height:min(124%,1160px);z-index:-1;pointer-events:none;background:center/cover no-repeat;opacity:.3;mix-blend-mode:screen;
+  -webkit-mask-image:radial-gradient(75% 70% at 60% 50%,#000 30%,transparent 80%);mask-image:radial-gradient(75% 70% at 60% 50%,#000 30%,transparent 80%);
+  transform:translate3d(0,var(--py,0px),0);will-change:transform}
+.band:nth-of-type(odd) .bgart{background-position:right center}
+@media (max-width:760px){.bgart{opacity:.18}}
 /* barra de progresso de leitura */
 .progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--red-deep),var(--red),#ff6b77);z-index:100;box-shadow:0 0 12px var(--red)}
-[data-reveal].pre{opacity:0;transform:translateY(22px)}
-[data-reveal].in{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal].pre{opacity:1!important;transform:none!important}#fx,.scan{display:none}}
+[data-reveal].pre{opacity:0;transform:translateY(36px) scale(.985);filter:blur(10px)}
+[data-reveal].in{opacity:1;transform:none;filter:none;transition:opacity .9s cubic-bezier(.2,.7,.3,1),transform .9s cubic-bezier(.2,.7,.3,1),filter .9s cubic-bezier(.2,.7,.3,1)}
+[data-reveal].in.done{transition:transform .5s cubic-bezier(.2,.7,.3,1),background .25s,padding .25s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-reveal].pre{opacity:1!important;transform:none!important;filter:none!important}#fx,.scan{display:none}}
 </style>
 <style>
 html{-webkit-text-size-adjust:100%}
@@ -446,6 +487,7 @@ img{max-width:100%}
 </div>
 
 <section class="band" id="projetos">
+  <div class="bgart" style="background-image:url(bg/code.webp)" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <h2>Projetos selecionados</h2>
@@ -612,6 +654,7 @@ img{max-width:100%}
 </section>
 
 <section class="band" id="depoimento" style="border-top:1px solid var(--line)">
+  <div class="bgart" style="background-image:url(bg/terminal.webp)" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <h2>O que o cliente disse</h2>
@@ -636,6 +679,7 @@ img{max-width:100%}
 </section>
 
 <section class="band" id="servicos" style="border-top:1px solid var(--line)">
+  <div class="bgart" style="background-image:url(bg/circuit.webp)" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <h2>O que eu faço</h2>
@@ -654,6 +698,7 @@ img{max-width:100%}
 </section>
 
 <section class="band" id="processo" style="border-top:1px solid var(--line)">
+  <div class="bgart" style="background-image:url(bg/servers.webp)" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <h2>Processo &amp; stack</h2>
@@ -695,6 +740,7 @@ img{max-width:100%}
 </section>
 
 <section class="band" id="github" style="border-top:1px solid var(--line)">
+  <div class="bgart" style="background-image:url(bg/grid.webp)" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <h2>Repositórios</h2>
@@ -748,6 +794,7 @@ img{max-width:100%}
 </section>
 
 <section class="band" id="perguntas" style="border-top:1px solid var(--line)">
+  <div class="bgart" style="background-image:url(bg/monitor.webp)" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <h2>Perguntas</h2>
@@ -784,6 +831,7 @@ img{max-width:100%}
 </section>
 
 <section class="close" id="contato">
+  <video class="close-v" muted loop playsinline preload="none" poster="hero.jpg" aria-hidden="true"><source src="hero.webm" type="video/webm"><source src="hero.mp4" type="video/mp4"></video>
   <div class="wrap">
     <p class="label" data-reveal>Próximo passo</p>
     <h2 data-reveal style="margin-top:18px">Vamos<br>trabalhar <em>juntos</em></h2>
@@ -1126,6 +1174,88 @@ img{max-width:100%}
     st.style.setProperty('--vy', (((e.clientY - r.top) / r.height - .5) * -18).toFixed(1) + 'px');
   });
   st.addEventListener('pointerleave', function(){ st.style.setProperty('--vx', '0px'); st.style.setProperty('--vy', '0px'); });
+})();
+</script>
+<script>
+/* secoes: cascata, previa dos projetos, cartoes em 3D, video do contato */
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fino = matchMedia('(pointer:fine)').matches;
+
+  /* cascata: irmaos entram um depois do outro */
+  document.querySelectorAll('[data-reveal]').forEach(function(el){
+    var irmaos = Array.prototype.filter.call(el.parentNode.children, function(c){ return c.hasAttribute('data-reveal'); });
+    el.style.transitionDelay = Math.min(irmaos.indexOf(el), 6) * 80 + 'ms';
+    el.addEventListener('transitionend', function fim(e){
+      if (e.target !== el || !el.classList.contains('in')) return;
+      el.style.transitionDelay = ''; el.classList.add('done'); el.removeEventListener('transitionend', fim);
+    });
+  });
+
+  /* video do contato so toca quando aparece */
+  var cv = document.querySelector('.close-v');
+  if (cv && !reduce) {
+    new IntersectionObserver(function(es){
+      es.forEach(function(en){ if (en.isIntersecting) cv.play().catch(function(){}); else cv.pause(); });
+    }, { threshold: .15 }).observe(cv);
+  }
+
+  /* parallax suave das ilustracoes de fundo */
+  var arts = Array.prototype.slice.call(document.querySelectorAll('.bgart'));
+  if (!reduce && arts.length) {
+    var tick = false;
+    function par(){
+      tick = false;
+      arts.forEach(function(a){
+        var r = a.parentNode.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > innerHeight) return;
+        a.style.setProperty('--py', ((r.top + r.height / 2 - innerHeight / 2) * -.12).toFixed(1) + 'px');
+      });
+    }
+    addEventListener('scroll', function(){ if (!tick) { tick = true; requestAnimationFrame(par); } }, { passive: true }); par();
+  }
+
+  if (reduce || !fino) return;
+
+  /* previa real do site seguindo o cursor */
+  var shots = {
+    'lt-seguradoras.vercel.app': 'lt-seguradoras', 'jordan-custom.vercel.app': 'jordan-custom', 'ordemflow-ten.vercel.app': 'ordemflow',
+    'crm-zeta-inky.vercel.app': 'crm', 'avizo-three.vercel.app': 'avizo', 'rr-modas.vercel.app': 'rr-modas', 'cubas-metales-site.vercel.app': 'cubas',
+    'jefersonrodrigues-adv.vercel.app': 'advocacia', 'grevillas.vercel.app': 'grevillas', 'bolsaepoder.vercel.app': 'bolsaepoder'
+  };
+  var peek = document.createElement('div');
+  peek.className = 'peek'; peek.setAttribute('aria-hidden', 'true');
+  peek.innerHTML = '<img alt=""><b>ao vivo</b>';
+  document.body.appendChild(peek);
+  var img = peek.querySelector('img'), px = 0, py = 0, tx = 0, ty = 0, raf = 0;
+  function follow(){
+    px += (tx - px) * .18; py += (ty - py) * .18;
+    peek.style.transform = 'translate(' + px.toFixed(1) + 'px,' + py.toFixed(1) + 'px) rotate(' + ((tx - px) * .02).toFixed(2) + 'deg)';
+    raf = Math.abs(tx - px) + Math.abs(ty - py) > .5 ? requestAnimationFrame(follow) : 0;
+  }
+  document.querySelectorAll('a.prow').forEach(function(a){
+    var key = shots[a.hostname];
+    if (!key) return;
+    a.addEventListener('pointerenter', function(e){
+      img.src = 'shots/' + key + '.webp';
+      tx = px = e.clientX + 28; ty = py = e.clientY - 120;
+      peek.classList.add('on');
+    });
+    a.addEventListener('pointermove', function(e){
+      tx = Math.min(e.clientX + 28, innerWidth - 360); ty = e.clientY - 120;
+      if (!raf) raf = requestAnimationFrame(follow);
+    });
+    a.addEventListener('pointerleave', function(){ peek.classList.remove('on'); });
+  });
+
+  /* cartoes inclinam acompanhando o cursor */
+  document.querySelectorAll('.svc, .blk').forEach(function(c){
+    c.addEventListener('pointermove', function(e){
+      var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      c.style.transform = 'perspective(800px) rotateY(' + (x * 7).toFixed(2) + 'deg) rotateX(' + (-y * 7).toFixed(2) + 'deg) translateZ(6px)';
+    });
+    c.addEventListener('pointerleave', function(){ c.style.transform = ''; });
+  });
 })();
 </script>
 </body>
