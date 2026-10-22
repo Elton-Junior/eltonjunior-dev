@@ -10,14 +10,14 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Elton Junior">
 <meta property="og:title" content="Elton Junior — T.I. &amp; Automacao com IA">
-<meta property="og:description" content="SaaS, e-commerce e automacao com IA para pequenas e medias empresas. Seis sistemas no ar agora.">
+<meta property="og:description" content="SaaS, e-commerce e automacao com IA para pequenas e medias empresas. Dez sistemas no ar agora. Engenheiro da Computação.">
 <meta property="og:url" content="https://eltonjunior.dev/">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A0B'/%3E%3Cpath d='M9 8h14v4H13v4h9v4h-9v4h10v4H9z' fill='%23E11B2C'/%3E%3C/svg%3E">
 <title>Portfólio Elton Junior</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gugi&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
 <style>
 /* Layout: revista editorial preto e vermelho — palavra display gigante no fundo, painel de produção por cima, projetos numerados em linhas de catálogo. */
 :root{
@@ -25,7 +25,7 @@
   --ink:#F4F3F1; --muted:#9A9AA3; --faint:#6B6B75;
   --red:#E11B2C; --red-ink:#FFFFFF; --red-deep:#8C0E1B; --red-glow:rgba(225,27,44,.16);
   --ok:#2FBF71;
-  --display:'Manrope','Helvetica Neue',Arial,sans-serif;
+  --display:'Gugi','Helvetica Neue',Arial,sans-serif;
   --body:'Inter','Helvetica Neue',Arial,sans-serif;
   --mono:'JetBrains Mono','Cascadia Mono',Consolas,monospace;
   --maxw:1180px;
@@ -76,11 +76,11 @@ nav.links a:hover{color:var(--red)}
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 72% 18%,var(--red-glow),transparent 70%);pointer-events:none}
 .hero>.wrap{position:relative;z-index:2;padding-block:clamp(26px,3.4vw,42px) clamp(40px,5vw,68px)}
 .bigword{display:flex;justify-content:space-between;overflow:hidden;line-height:.84;margin-bottom:clamp(-16px,-1.4vw,-8px)}
-.bigword span{display:block;font-family:var(--display);text-transform:uppercase;font-size:clamp(38px,13.2vw,186px);color:var(--red);letter-spacing:-.045em;animation:rise 1s cubic-bezier(.16,.84,.26,1) both;animation-delay:calc(var(--i) * 55ms)}
+.bigword span{display:block;font-family:var(--display);text-transform:uppercase;font-size:clamp(30px,10.4vw,150px);color:var(--red);letter-spacing:-.02em;animation:rise 1s cubic-bezier(.16,.84,.26,1) both;animation-delay:calc(var(--i) * 55ms)}
 @keyframes rise{from{transform:translateY(106%)}to{transform:translateY(0)}}
-.hero-grid{display:grid;grid-template-columns:1fr 220px;gap:clamp(20px,3vw,40px);align-items:start;margin-top:clamp(18px,2.4vw,30px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr 210px;gap:clamp(20px,3vw,40px);align-items:start;margin-top:clamp(18px,2.4vw,30px)}
 .hero-grid>*{min-width:0}
-@media (max-width:1020px){.hero-grid{grid-template-columns:1fr}.hero-stats{grid-column:1/-1;flex-direction:row!important;flex-wrap:wrap}}
+@media (max-width:1020px){.hero-grid{grid-template-columns:1fr 1fr}.hero-stats{grid-column:1/-1;flex-direction:row!important;flex-wrap:wrap}}
 @media (max-width:760px){.hero-grid{grid-template-columns:1fr}}
 .hello{font-family:var(--body);font-style:italic;font-weight:500;font-size:clamp(17px,2vw,23px);color:var(--muted);animation:fade .8s ease both;animation-delay:.42s}
 h1.name{font-family:var(--display);text-transform:uppercase;font-size:clamp(34px,5.6vw,64px);letter-spacing:-.03em;line-height:.94;margin-top:6px;animation:fade .8s ease both;animation-delay:.5s}
@@ -107,7 +107,7 @@ h1.name{font-family:var(--display);text-transform:uppercase;font-size:clamp(34px
 .console-foot{padding:10px 13px;background:#000;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;color:var(--faint)}
 
 /* o painel de producao passa a ocupar a largura toda, abaixo das tres colunas */
-.hero-grid .console{order:9;grid-column:1/-1;margin-top:clamp(10px,1.6vw,22px);display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+.hero-grid .console{order:9;grid-column:1/-1;margin-top:clamp(10px,1.6vw,22px);display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line)}
 .hero-grid .console .console-top,.hero-grid .console .console-foot{grid-column:1/-1}
 .hero-grid .console .crow{background:var(--surface);border-bottom:0}
 @media (max-width:1020px){.hero-grid .console{grid-template-columns:repeat(2,1fr)}}
@@ -249,8 +249,8 @@ footer.foot a{color:var(--muted);text-decoration:none}
 footer.foot a:hover{color:var(--red)}
 .fr{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap}
 
-/* ---- titulos em Manrope: o peso que o Archivo Black trazia sozinho ---- */
-h1,h2,h3,.mark,.bigword span,.hstat b,.pnum,.pname,summary,.d-av{font-weight:800}
+/* ---- titulos em Gugi (um peso so: nada de negrito sintetico) ---- */
+h1,h2,h3,.mark,.bigword span,.hstat b,.pnum,.pname,summary,.d-av,.close h2{font-weight:400}
 h1,h2{letter-spacing:-.02em}
 
 /* ---- camada futurista: grid em perspectiva, particulas, holofote no cursor ---- */
@@ -279,6 +279,33 @@ h1,h2{letter-spacing:-.02em}
 .marq{position:relative}
 .marq::before,.marq::after{content:"";position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
 .marq::before{left:0;background:linear-gradient(90deg,#000,transparent)}.marq::after{right:0;background:linear-gradient(-90deg,#000,transparent)}
+/* nucleo 3D: esfera de pontos com os projetos em orbita */
+.orb{position:relative;aspect-ratio:1/1;width:100%;max-width:440px;justify-self:center;margin-top:-30px;animation:fade 1.2s ease both;animation-delay:.4s}
+.orb canvas{position:absolute;inset:0;width:100%;height:100%}
+.orb .hud{position:absolute;inset:6%;border-radius:50%;border:1px dashed rgba(225,27,44,.25);animation:spin 40s linear infinite}
+.orb .hud::before,.orb .hud::after{content:"";position:absolute;width:9px;height:9px;background:var(--red);border-radius:50%;box-shadow:0 0 14px var(--red);top:-5px;left:50%}
+.orb .hud::after{top:auto;bottom:-5px;left:30%;width:6px;height:6px}
+.orb .cap{position:absolute;left:0;right:0;bottom:-6px;text-align:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.orb .cap b{color:var(--red);font-weight:700}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:1020px){.hero-stats{order:8}}
+@media (max-width:760px){.orb{max-width:340px;margin-top:0}}
+/* cantos de HUD no console */
+.console{position:relative}
+.console::before,.console::after{content:"";position:absolute;width:14px;height:14px;border:2px solid var(--red);z-index:3;pointer-events:none}
+.console::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.console::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+/* glitch nas letras da palavra display */
+.bigword span.gl{animation:none;transform:translate(var(--gx,3px),0) skewX(var(--gs,-8deg));filter:drop-shadow(-4px 0 0 rgba(0,229,255,.55)) drop-shadow(4px 0 0 rgba(225,27,44,.9))}
+/* varredura de luz nas linhas de projeto */
+.prow::after{content:"";position:absolute;top:0;bottom:0;left:-30%;width:30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);transform:skewX(-20deg);opacity:0;z-index:1;pointer-events:none}
+.prow:hover::after{animation:sweep .9s ease}
+@keyframes sweep{from{left:-30%;opacity:1}to{left:110%;opacity:1}}
+.pnew{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.16em;color:#fff;background:var(--red);padding:2px 6px;border-radius:2px;margin-left:8px;vertical-align:2px;box-shadow:0 0 14px rgba(225,27,44,.6)}
+/* botoes magneticos */
+.btn{will-change:transform}
+.eng{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid rgba(225,27,44,.45);background:rgba(225,27,44,.08);padding:7px 11px;border-radius:2px;animation:fade .8s ease both;animation-delay:.6s}
+.eng svg{color:var(--red)}
 /* barra de progresso de leitura */
 .progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--red-deep),var(--red),#ff6b77);z-index:100;box-shadow:0 0 12px var(--red)}
 [data-reveal].pre{opacity:0;transform:translateY(22px)}
@@ -330,6 +357,7 @@ img{max-width:100%}
       <div>
         <p class="hello">Olá, eu sou</p>
         <h1 class="name">Elton<br>Junior</h1>
+        <span class="eng"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>Engenheiro da Computação</span>
         <p class="role"><span data-scramble>Especialista em T.I. &amp; Automação com IA</span><span class="cur" aria-hidden="true"></span></p>
         <p class="hero-p">Construo SaaS, e-commerce e automação para pequenas e médias empresas. Não entrego protótipo: entrego sistema com endereço público, banco de dados e manutenção. Tudo o que está nesta página está no ar agora.</p>
         <div class="hero-cta">
@@ -342,12 +370,20 @@ img{max-width:100%}
         <span class="worldwide"><i aria-hidden="true"></i>Atendimento remoto · Brasil</span>
       </div>
 
+      <div class="orb" aria-hidden="true">
+        <span class="hud"></span>
+        <canvas id="orb"></canvas>
+        <span class="cap"><b>11</b> sistemas em órbita</span>
+      </div>
+
       <div class="console" aria-label="Endereços em produção">
         <div class="console-top">
           <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
           <b>produção</b>
           <span class="reg">sa-east-1</span>
         </div>
+        <div class="crow"><a href="https://lt-seguradoras.vercel.app">lt-seguradoras.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
+        <div class="crow"><a href="https://jordan-custom.vercel.app">jordan-custom.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
         <div class="crow"><a href="https://ordemflow-ten.vercel.app">ordemflow-ten.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
         <div class="crow"><a href="https://crm-zeta-inky.vercel.app">crm-zeta-inky.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
         <div class="crow"><a href="https://avizo-three.vercel.app">avizo-three.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
@@ -356,12 +392,12 @@ img{max-width:100%}
         <div class="crow"><a href="https://bolsaepoder.vercel.app">bolsaepoder.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
         <div class="crow"><a href="https://jefersonrodrigues-adv.vercel.app">jefersonrodrigues-adv.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
         <div class="crow"><a href="https://grevillas.vercel.app">grevillas.vercel.app</a><span class="st"><i aria-hidden="true"></i>200</span></div>
-        <div class="console-foot" data-status-foot>Checado em 20/10/2026 · oito endereços, todos responderam 200</div>
+        <div class="console-foot" data-status-foot>Checado em 22/10/2026 · dez endereços, todos responderam 200</div>
       </div>
 
       <div class="hero-stats">
-        <div class="hstat"><b data-count="9">9</b><span>sistemas<br>construídos</span></div>
-        <div class="hstat"><b data-count="8">8</b><span>endereços<br>no ar hoje</span></div>
+        <div class="hstat"><b data-count="11">11</b><span>sistemas<br>construídos</span></div>
+        <div class="hstat"><b data-count="10">10</b><span>endereços<br>no ar hoje</span></div>
         <div class="hstat"><b data-count="6">6</b><span>bancos Postgres<br>com RLS</span></div>
         <div class="hstat"><b>2,3<small style="font-size:.5em"> MB</small></b><span>de TypeScript<br>publicado</span></div>
       </div>
@@ -385,8 +421,36 @@ img{max-width:100%}
     </div>
 
     <div class="plist">
-      <a class="prow" href="https://ordemflow-ten.vercel.app" data-reveal>
+      <a class="prow" href="https://lt-seguradoras.vercel.app" data-reveal>
         <span class="pnum">01</span>
+        <div>
+          <span class="ptag">Catálogo automotivo · leilão<span class="pnew">NOVO</span></span>
+          <h3 class="pname">LT Seguradoras</h3>
+          <p class="pdesc">Vitrine de uma revenda de carros de leilão montada a partir do próprio Instagram da loja: 877 publicações lidas, e a legenda de cada uma vira preço, quilometragem, procedência e status de vendido. Cada carro ganha giro de 360° com fotos reais do pátio.</p>
+          <p class="pmeta">8.132 fotos processadas · quadros externos detectados por visão computacional · GA4</p>
+        </div>
+        <div class="pstack"><b>Next.js</b><b>TypeScript</b><b>Python</b><b>Meta Graph API</b><b>GitHub Actions</b></div>
+        <span class="parrow" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <a class="prow" href="https://jordan-custom.vercel.app" data-reveal>
+        <span class="pnum">02</span>
+        <div>
+          <span class="ptag">Marca · produto custom<span class="pnew">NOVO</span></span>
+          <h3 class="pname">Jordan Custom</h3>
+          <p class="pdesc">Site de uma marca de lupas personalizadas: 32 peças com curadoria do Instagram, logo vetorizado a partir de uma foto, lupa em 3D gerada no navegador e um configurador "Monte sua lupa" que envia a montagem direto para o WhatsApp.</p>
+          <p class="pmeta">Logo vetorizado com OpenCV · modelo 3D procedural · orçamento caso a caso</p>
+        </div>
+        <div class="pstack"><b>Next.js</b><b>React Three Fiber</b><b>OpenCV</b><b>Tailwind</b></div>
+        <span class="parrow" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <a class="prow" href="https://ordemflow-ten.vercel.app" data-reveal>
+        <span class="pnum">03</span>
         <div>
           <span class="ptag">SaaS · produto comercial</span>
           <h3 class="pname">OrdemFlow</h3>
@@ -400,7 +464,7 @@ img{max-width:100%}
       </a>
 
       <a class="prow" href="https://crm-zeta-inky.vercel.app" data-reveal>
-        <span class="pnum">02</span>
+        <span class="pnum">04</span>
         <div>
           <span class="ptag">Workspace · código aberto</span>
           <h3 class="pname">CRM Interno</h3>
@@ -414,7 +478,7 @@ img{max-width:100%}
       </a>
 
       <a class="prow" href="https://avizo-three.vercel.app" data-reveal>
-        <span class="pnum">03</span>
+        <span class="pnum">05</span>
         <div>
           <span class="ptag">IA · WhatsApp · assinatura</span>
           <h3 class="pname">Avizo</h3>
@@ -428,7 +492,7 @@ img{max-width:100%}
       </a>
 
       <a class="prow" href="https://rr-modas.vercel.app" data-reveal>
-        <span class="pnum">04</span>
+        <span class="pnum">06</span>
         <div>
           <span class="ptag">E-commerce</span>
           <h3 class="pname">R&amp;R Modas</h3>
@@ -442,7 +506,7 @@ img{max-width:100%}
       </a>
 
       <a class="prow" href="https://cubas-metales-site.vercel.app" data-reveal>
-        <span class="pnum">05</span>
+        <span class="pnum">07</span>
         <div>
           <span class="ptag">Site institucional + loja</span>
           <h3 class="pname">Cubas Metales</h3>
@@ -456,7 +520,7 @@ img{max-width:100%}
       </a>
 
       <a class="prow" href="https://jefersonrodrigues-adv.vercel.app" data-reveal>
-        <span class="pnum">06</span>
+        <span class="pnum">08</span>
         <div>
           <span class="ptag">Captação · advocacia</span>
           <h3 class="pname">Advocacia JR</h3>
@@ -470,7 +534,7 @@ img{max-width:100%}
       </a>
 
       <a class="prow" href="https://grevillas.vercel.app" data-reveal>
-        <span class="pnum">07</span>
+        <span class="pnum">09</span>
         <div>
           <span class="ptag">Catálogo · joalheria</span>
           <h3 class="pname">Grevillas Joias</h3>
@@ -484,7 +548,7 @@ img{max-width:100%}
       </a>
 
       <a class="prow" href="https://bolsaepoder.vercel.app" data-reveal>
-        <span class="pnum">08</span>
+        <span class="pnum">10</span>
         <div>
           <span class="ptag">Automação com IA</span>
           <h3 class="pname">Bolsa &amp; Poder</h3>
@@ -498,7 +562,7 @@ img{max-width:100%}
       </a>
 
       <div class="prow" data-reveal style="cursor:default">
-        <span class="pnum">09</span>
+        <span class="pnum">11</span>
         <div>
           <span class="ptag">Mobile · Android e iOS</span>
           <h3 class="pname">App da Associação</h3>
@@ -565,10 +629,11 @@ img{max-width:100%}
     </div>
     <div class="two">
       <div class="blk" data-reveal>
-        <h3>Experiência &amp; stack</h3>
+        <h3>Formação, experiência &amp; stack</h3>
         <div class="edu">
+          <div class="edu-i"><div><b>Engenharia da Computação</b><small>Bacharelado · formado</small></div><span class="yr">Graduação</span></div>
           <div class="edu-i"><div><b>Produtos próprios em produção</b><small>OrdemFlow, Avizo, CRM — do banco ao faturamento</small></div><span class="yr">2026</span></div>
-          <div class="edu-i"><div><b>Sites e lojas para cliente</b><small>Cubas Metales, R&amp;R Modas, Grevillas Joias e Advocacia JR</small></div><span class="yr">2026</span></div>
+          <div class="edu-i"><div><b>Sites e lojas para cliente</b><small>LT Seguradoras, Jordan Custom, Cubas Metales, R&amp;R Modas, Grevillas Joias e Advocacia JR</small></div><span class="yr">2026</span></div>
           <div class="edu-i"><div><b>Automação e infraestrutura</b><small>Pipelines, agendamento, deploy contínuo e manutenção</small></div><span class="yr">2025</span></div>
         </div>
         <div class="chips">
@@ -891,6 +956,118 @@ img{max-width:100%}
     }
   }
   size(); addEventListener('resize', size); draw();
+})();
+</script>
+<script>
+/* nucleo 3D, glitch, titulos que se decodificam, botoes magneticos */
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* esfera de pontos girando com os projetos em orbita */
+  var cv = document.getElementById('orb');
+  if (cv) {
+    var ctx = cv.getContext('2d'), dpr = Math.min(devicePixelRatio || 1, 2), S = 0, pts = [], tilt = { x: 0, y: 0 }, vis = true;
+    var nomes = ['LT Seguradoras','Jordan Custom','OrdemFlow','CRM Interno','Avizo','R&R Modas','Cubas Metales','Advocacia JR','Grevillas','Bolsa & Poder','App Associação'];
+    var N = 260, ga = Math.PI * (3 - Math.sqrt(5));
+    for (var i = 0; i < N; i++) {
+      var y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = ga * i;
+      pts.push([Math.cos(th) * r, y, Math.sin(th) * r]);
+    }
+    function size(){ S = cv.clientWidth; cv.width = cv.height = S * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+    function rot(p, ay, ax){
+      var x = p[0] * Math.cos(ay) - p[2] * Math.sin(ay), z = p[0] * Math.sin(ay) + p[2] * Math.cos(ay);
+      var y = p[1] * Math.cos(ax) - z * Math.sin(ax); z = p[1] * Math.sin(ax) + z * Math.cos(ax);
+      return [x, y, z];
+    }
+    function frame(ts){
+      var t = (ts || 0) / 1000, c = S / 2, R = S * .235, ay = t * .35 + tilt.x, ax = -.35 + tilt.y;
+      ctx.clearRect(0, 0, S, S);
+      var g = ctx.createRadialGradient(c, c, 0, c, c, R * 1.25);
+      g.addColorStop(0, 'rgba(225,27,44,.28)'); g.addColorStop(1, 'rgba(225,27,44,0)');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, S, S);
+      for (var i = 0; i < N; i++) {
+        var q = rot(pts[i], ay, ax), d = (q[2] + 1.6) / 2.6, k = 1 / (1.9 - q[2] * .5);
+        ctx.fillStyle = 'rgba(' + (q[2] > 0 ? '255,70,85' : '225,27,44') + ',' + (.15 + d * .8).toFixed(2) + ')';
+        var sz = .8 + d * 1.8;
+        ctx.fillRect(c + q[0] * R * k * 1.6 - sz / 2, c + q[1] * R * k * 1.6 - sz / 2, sz, sz);
+      }
+      /* aneis de orbita com os nomes */
+      ctx.font = '600 ' + Math.max(9, S * .026) + 'px "JetBrains Mono",monospace';
+      ctx.textAlign = 'center';
+      [[.0, 1.45, 1], [1.1, 1.62, -1]].forEach(function(ring, ri){
+        ctx.strokeStyle = 'rgba(225,27,44,.28)'; ctx.lineWidth = 1; ctx.beginPath();
+        for (var a = 0; a <= 64; a++) {
+          var an = a / 64 * Math.PI * 2, q = rot([Math.cos(an) * ring[1], 0, Math.sin(an) * ring[1]], ring[0], ax - .25);
+          var X = c + q[0] * R, Y = c + q[1] * R;
+          a ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y);
+        }
+        ctx.stroke();
+        nomes.forEach(function(nm, j){
+          if (j % 2 !== ri) return;
+          var an = j / nomes.length * Math.PI * 2 + t * .25 * ring[2];
+          var q = rot([Math.cos(an) * ring[1], 0, Math.sin(an) * ring[1]], ring[0], ax - .25);
+          var X = c + q[0] * R, Y = c + q[1] * R, a = q[2] > 0 ? .95 : .3;
+          ctx.fillStyle = 'rgba(225,27,44,' + a + ')';
+          ctx.beginPath(); ctx.arc(X, Y, q[2] > 0 ? 3 : 2, 0, 7); ctx.fill();
+          ctx.fillStyle = 'rgba(244,243,241,' + (a * .85).toFixed(2) + ')';
+          ctx.fillText(nm.toUpperCase(), X, Y - 9);
+        });
+      });
+      if (!reduce) requestAnimationFrame(loop);
+    }
+    function loop(ts){ if (vis) frame(ts); else requestAnimationFrame(loop); }
+    var hero = document.querySelector('.hero');
+    hero.addEventListener('pointermove', function(e){
+      var r = hero.getBoundingClientRect();
+      tilt.x = ((e.clientX - r.left) / r.width - .5) * .9;
+      tilt.y = ((e.clientY - r.top) / r.height - .5) * .5;
+    });
+    new IntersectionObserver(function(es){ vis = es[0].isIntersecting; }).observe(cv);
+    size(); addEventListener('resize', size);
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(function(){ frame(0); });
+  }
+
+  if (reduce) return;
+
+  /* glitch: de tempos em tempos uma letra da palavra display treme */
+  var letras = document.querySelectorAll('.bigword span');
+  setTimeout(function glitch(){
+    var el = letras[(Math.random() * letras.length) | 0];
+    el.style.setProperty('--gx', ((Math.random() - .5) * 12).toFixed(1) + 'px');
+    el.style.setProperty('--gs', ((Math.random() - .5) * 20).toFixed(1) + 'deg');
+    el.classList.add('gl');
+    setTimeout(function(){ el.classList.remove('gl'); }, 90 + Math.random() * 120);
+    setTimeout(glitch, 900 + Math.random() * 2200);
+  }, 1800);
+
+  /* titulos de secao se decodificam quando entram na tela */
+  var chars = '01<>/{}[]#$%&*+=_';
+  function decode(el){
+    var final = el.textContent, f = 0;
+    (function step(){
+      var out = '';
+      for (var i = 0; i < final.length; i++) out += (i < f / 1.5 || final[i] === ' ') ? final[i] : chars[(Math.random() * chars.length) | 0];
+      el.textContent = out;
+      if (f++ < final.length * 1.5) requestAnimationFrame(step); else el.textContent = final;
+    })();
+  }
+  var io3 = new IntersectionObserver(function(es){
+    es.forEach(function(en){ if (en.isIntersecting) { io3.unobserve(en.target); decode(en.target); } });
+  }, { threshold: .6 });
+  document.querySelectorAll('.sec-head h2').forEach(function(h){
+    if (!h.children.length) { h.setAttribute('aria-label', h.textContent); io3.observe(h); }
+  });
+
+  /* botoes magneticos */
+  if (matchMedia('(pointer:fine)').matches) {
+    document.querySelectorAll('.hero .btn, .close .btn').forEach(function(b){
+      b.addEventListener('pointermove', function(e){
+        var r = b.getBoundingClientRect();
+        b.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * .25).toFixed(1) + 'px,' + ((e.clientY - r.top - r.height / 2) * .35).toFixed(1) + 'px)';
+      });
+      b.addEventListener('pointerleave', function(){ b.style.transform = ''; });
+    });
+  }
 })();
 </script>
 </body>
