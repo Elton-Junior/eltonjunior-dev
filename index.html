@@ -451,6 +451,11 @@ h1,h2{letter-spacing:-.02em}
 #hud .joke{display:none;text-align:center;font-family:var(--display);font-size:clamp(26px,5vw,52px);text-transform:uppercase}
 #hud .joke em{font-style:normal;color:var(--red)}
 #hud canvas{opacity:.5;image-rendering:pixelated}
+/* chuva de codigo formando o hacker de capuz */
+.stage .rain{position:absolute;left:0;top:0;width:min(48%,760px);height:100%;z-index:-1;pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,#000 55%,transparent),linear-gradient(#000 70%,transparent);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,#000 55%,transparent),linear-gradient(#000 70%,transparent);mask-composite:intersect}
+@media (max-width:760px){.stage .rain{width:100%;opacity:.55}}
 /* barra de progresso de leitura */
 .progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--red-deep),var(--red),#ff6b77);z-index:100;box-shadow:0 0 12px var(--red)}
 [data-reveal].pre{opacity:0;transform:translateY(36px) scale(.985);filter:blur(10px)}
@@ -492,6 +497,7 @@ img{max-width:100%}
     <source src="hero.mp4" type="video/mp4">
   </video>
   <div class="stage-shade" aria-hidden="true"></div>
+  <canvas class="rain" aria-hidden="true"></canvas>
   <div class="wrap stage-in">
     <p class="stage-k"><i aria-hidden="true"></i>Elton Junior · Engenheiro da Computação · Disponível para projetos</p>
     <h1 class="mega"><span class="ln"><span>Sistemas em</span></span><span class="ln"><span>produção.</span></span><span class="ln"><span><em>Não protótipos.</em></span></span></h1>
@@ -1521,6 +1527,60 @@ img{max-width:100%}
   if (reduce) { draw(4000); return; }
   new IntersectionObserver(function(es){ vis = es[0].isIntersecting; }).observe(cv);
   (function loop(ts){ requestAnimationFrame(loop); if (vis) draw(ts); })();
+})();
+</script>
+<script>
+/* chuva de codigo no lado esquerdo do palco; a silhueta de um hacker de capuz surge dos caracteres */
+(function(){
+  var cv = document.querySelector('.stage .rain'); if (!cv) return;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ctx = cv.getContext('2d'), FS = 15, CW = 14, LH = 17, W, H, cols, rows, cab = [], vel = [], grade = [], mask = null, vis = true, ult = 0;
+  var CH = '01<|>{}#$=+*/;01010101';
+  function silhueta(){
+    // desenha o capuz numa tela auxiliar e guarda onde ha figura (1), rosto vazio (2) ou fundo (0)
+    var m = document.createElement('canvas'); m.width = cols; m.height = rows;
+    var c = m.getContext('2d'), w = cols, h = rows, bw = Math.min(w * .9, h * .72), x0 = (w - bw) * .45, y0 = h * .1, bh = bw * 1.25;
+    var P = function(px, py){ return [x0 + px * bw, y0 + py * bh]; };
+    c.fillStyle = '#fff'; c.beginPath();
+    var a = P(0, 1), b = P(.16, .66), pk = P(.5, -.04), d = P(.84, .66), e = P(1, 1);
+    c.moveTo(a[0], a[1]); c.quadraticCurveTo(P(.02, .74)[0], P(.02, .74)[1], b[0], b[1]);
+    c.bezierCurveTo(P(.1, .2)[0], P(.1, .2)[1], P(.3, -.04)[0], P(.3, -.04)[1], pk[0], pk[1]);
+    c.bezierCurveTo(P(.7, -.04)[0], P(.7, -.04)[1], P(.9, .2)[0], P(.9, .2)[1], d[0], d[1]);
+    c.quadraticCurveTo(P(.98, .74)[0], P(.98, .74)[1], e[0], e[1]); c.closePath(); c.fill();
+    c.fillStyle = '#f00'; c.beginPath(); c.ellipse(P(.5, .44)[0], P(.5, .44)[1], bw * .2, bh * .2, 0, 0, Math.PI * 2); c.fill();
+    var px = c.getImageData(0, 0, w, h).data; mask = new Uint8Array(w * h);
+    for (var i = 0; i < w * h; i++) mask[i] = px[i * 4 + 1] > 128 ? 1 : (px[i * 4] > 128 ? 2 : 0);
+    var borda = new Uint8Array(w * h);
+    for (var y = 1; y < h - 1; y++) for (var x = 1; x < w - 1; x++) { var q = y * w + x; if (mask[q] !== 1) continue; if (mask[q - 1] !== 1 || mask[q + 1] !== 1 || mask[q - w] !== 1 || mask[q + w] !== 1) borda[q] = 1; }
+    for (var j = 0; j < w * h; j++) if (borda[j]) mask[j] = 3;
+  }
+  function size(){
+    var dpr = Math.min(devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Math.ceil(W / CW); rows = Math.ceil(H / LH); cab = []; vel = []; grade = [];
+    for (var c = 0; c < cols; c++) { cab.push(Math.random() * rows); vel.push(.25 + Math.random() * .55); }
+    for (var i = 0; i < cols * rows; i++) grade.push(CH[(Math.random() * CH.length) | 0]);
+    silhueta();
+  }
+  function quadro(ts){
+    ctx.clearRect(0, 0, W, H); ctx.font = '600 ' + FS + 'px "JetBrains Mono",monospace'; ctx.textBaseline = 'top';
+    for (var c = 0; c < cols; c++) {
+      cab[c] += vel[c]; if (cab[c] > rows + 20) { cab[c] = -Math.random() * 20; vel[c] = .25 + Math.random() * .55; }
+      for (var r = 0; r < rows; r++) {
+        var k = r * cols + c, m = mask[k], d = cab[c] - r, rastro = d >= 0 && d < 22 ? 1 - d / 22 : 0;
+        if (m === 2) { if (rastro > .85) { ctx.fillStyle = 'rgba(225,27,44,.25)'; ctx.fillText(grade[k], c * CW, r * LH); } continue; }
+        var a = m === 3 ? .75 + rastro * .25 : m === 1 ? .38 + rastro * .62 : rastro * .22;
+        if (a < .04) continue;
+        if (Math.random() < .02) grade[k] = CH[(Math.random() * CH.length) | 0];
+        ctx.fillStyle = d >= 0 && d < 1 ? 'rgba(255,235,238,' + a + ')' : (m === 3 ? 'rgba(255,120,130,' + a + ')' : m === 1 ? 'rgba(255,' + (40 + rastro * 70 | 0) + ',60,' + a + ')' : 'rgba(150,20,30,' + a + ')');
+        ctx.fillText(grade[k], c * CW, r * LH);
+      }
+    }
+  }
+  size(); addEventListener('resize', size);
+  if (reduce) { for (var i = 0; i < 40; i++) quadro(0); return; }
+  new IntersectionObserver(function(es){ vis = es[0].isIntersecting; }).observe(cv);
+  (function loop(ts){ requestAnimationFrame(loop); if (!vis || ts - ult < 33) return; ult = ts; quadro(ts); })();
 })();
 </script>
 </body>
