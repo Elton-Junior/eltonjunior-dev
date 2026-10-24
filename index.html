@@ -441,6 +441,26 @@ h1,h2{letter-spacing:-.02em}
   -webkit-mask-image:linear-gradient(90deg,#000 55%,transparent),linear-gradient(#000 70%,transparent);-webkit-mask-composite:source-in;
   mask-image:linear-gradient(90deg,#000 55%,transparent),linear-gradient(#000 70%,transparent);mask-composite:intersect}
 @media (max-width:760px){.stage .rain{width:100%;opacity:.55}}
+/* ---- QR Code do contato ---- */
+.qr-card{display:flex;gap:22px;align-items:center;margin-top:30px;padding:18px;border:1px solid rgba(225,27,44,.45);background:rgba(10,10,11,.75);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);max-width:440px}
+.qr-box{position:relative;width:150px;height:150px;flex:none;background:#F4F3F1;padding:8px;box-shadow:0 0 40px -10px rgba(225,27,44,.7)}
+.qr-face{position:absolute;inset:8px;opacity:0;transform:rotateY(90deg);transition:opacity .35s,transform .45s cubic-bezier(.2,.7,.3,1)}
+.qr-face.on{opacity:1;transform:none}
+.qr-svg{width:100%;height:100%;display:block}
+.qr-scan{position:absolute;left:0;right:0;top:0;height:3px;background:var(--red);box-shadow:0 0 14px var(--red),0 0 30px var(--red);animation:qrscan 2.4s ease-in-out infinite}
+@keyframes qrscan{0%,100%{top:4%}50%{top:94%}}
+.qr-corner::before,.qr-corner::after{content:"";position:absolute;width:22px;height:22px;border:3px solid var(--red)}
+.qr-corner::before{top:-7px;left:-7px;border-right:0;border-bottom:0}
+.qr-corner::after{bottom:-7px;right:-7px;border-left:0;border-top:0}
+.qr-info{display:flex;flex-direction:column;gap:10px;min-width:0}
+.qr-t{color:var(--muted);font-size:13.5px;line-height:1.45}
+.qr-tabs{display:flex;gap:6px}
+.qr-tabs button{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 11px;background:transparent;border:1px solid var(--line);color:var(--muted);cursor:pointer}
+.qr-tabs button[aria-selected="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.qr-link{font-family:var(--mono);font-size:12px;color:var(--ink);text-decoration:none}
+.qr-link:hover{color:var(--red)}
+@media (max-width:420px){.qr-card{flex-direction:column;align-items:flex-start}}
+@media (prefers-reduced-motion:reduce){.qr-scan{display:none}}
 /* barra de progresso de leitura */
 .progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--red-deep),var(--red),#ff6b77);z-index:100;box-shadow:0 0 12px var(--red)}
 [data-reveal].pre{opacity:0;transform:translateY(36px) scale(.985);filter:blur(10px)}
@@ -960,6 +980,23 @@ img{max-width:100%}
             Chamar no WhatsApp agora
           </a>
         </div>
+        <div class="qr-card">
+          <div class="qr-box">
+            <div class="qr-face on" data-qr="site"><svg class="qr-svg" role="img" aria-label="QR Code para o site" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" shape-rendering="crispEdges"><path fill="#F4F3F1" d="M0 0h35v35H0z"/><path stroke="#0A0A0B" d="M1 1.5h7m1 0h3m3 0h2m1 0h5m1 0h2m1 0h7M1 2.5h1m5 0h1m1 0h4m1 0h1m2 0h1m4 0h2m1 0h1m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h1m1 0h2m3 0h4m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m2 0h2m2 0h2m1 0h3m1 0h1m1 0h2m2 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m3 0h1m1 0h2m1 0h2m3 0h1m2 0h1m2 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h1m2 0h1m1 0h1m1 0h2m3 0h1m1 0h1m3 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h1m1 0h5m2 0h5m2 0h1M3 9.5h3m1 0h1m1 0h1m1 0h1m3 0h5m3 0h1m1 0h4m2 0h3M2 10.5h4m2 0h7m1 0h1m2 0h1m1 0h7m2 0h1m2 0h1M1 11.5h1m2 0h2m1 0h2m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h4m1 0h1m1 0h1M2 12.5h2m1 0h1m2 0h2m2 0h3m1 0h1m1 0h1m3 0h1m1 0h1m1 0h2m2 0h3M1 13.5h1m1 0h1m2 0h2m1 0h1m1 0h1m2 0h5m2 0h1m1 0h1m2 0h1m1 0h3m1 0h1M4 14.5h1m1 0h1m1 0h1m8 0h1m1 0h2m2 0h2m2 0h1m3 0h1m1 0h1M6 15.5h4m1 0h1m8 0h2m1 0h1m1 0h2m5 0h1M1 16.5h2m8 0h1m1 0h2m1 0h1m2 0h2m1 0h4m4 0h2m1 0h1M3 17.5h1m2 0h9m2 0h3m4 0h1m1 0h1m1 0h2M1 18.5h1m1 0h2m5 0h1m1 0h1m1 0h1m4 0h2m3 0h2m1 0h1m4 0h2M1 19.5h3m3 0h3m1 0h2m1 0h2m1 0h1m1 0h3m1 0h1m2 0h2m3 0h2M1 20.5h2m1 0h2m2 0h1m4 0h1m2 0h1m2 0h1m2 0h1m1 0h2m3 0h4M2 21.5h1m1 0h2m1 0h1m1 0h1m4 0h1m2 0h1m2 0h2m1 0h1m1 0h1m2 0h3m1 0h1M1 22.5h3m1 0h2m1 0h1m1 0h5m2 0h2m1 0h3m1 0h1m2 0h1m2 0h1m2 0h1M1 23.5h1m2 0h1m2 0h3m2 0h1m2 0h7m1 0h1m1 0h1m2 0h1m2 0h2M1 24.5h1m4 0h1m3 0h2m1 0h1m1 0h1m1 0h1m2 0h3m1 0h1m5 0h3M1 25.5h1m1 0h1m3 0h3m1 0h1m1 0h2m1 0h1m3 0h1m2 0h8m2 0h1M9 26.5h2m1 0h2m3 0h1m1 0h1m2 0h1m1 0h2m3 0h1m1 0h1m1 0h1M1 27.5h7m2 0h2m1 0h1m2 0h1m1 0h1m3 0h1m1 0h2m1 0h1m1 0h1m2 0h1M1 28.5h1m5 0h1m2 0h3m4 0h1m4 0h1m1 0h2m3 0h1m1 0h3M1 29.5h1m1 0h3m1 0h1m1 0h2m1 0h6m1 0h1m2 0h1m2 0h5m2 0h2M1 30.5h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h3m1 0h4m1 0h3m2 0h1m1 0h1m1 0h1M1 31.5h1m1 0h3m1 0h1m1 0h1m1 0h1m5 0h2m4 0h5m2 0h1M1 32.5h1m5 0h1m4 0h1m1 0h4m1 0h4m3 0h3m1 0h2M1 33.5h7m6 0h2m3 0h2m2 0h3m1 0h1m4 0h1"/></svg></div>
+            <div class="qr-face" data-qr="insta"><svg class="qr-svg" role="img" aria-label="QR Code para o Instagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39 39" shape-rendering="crispEdges"><path fill="#F4F3F1" d="M0 0h39v39H0z"/><path stroke="#0A0A0B" d="M1 1.5h7m1 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h3m1 0h2m2 0h7M1 2.5h1m5 0h1m1 0h1m1 0h3m2 0h1m1 0h1m3 0h1m4 0h3m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m5 0h2m8 0h1m3 0h2m2 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h1m1 0h4m2 0h3m1 0h3m1 0h1m1 0h1m3 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h2m5 0h1m1 0h1m1 0h9m2 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h3m1 0h3m1 0h2m2 0h1m2 0h1m1 0h4m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 8.5h2m1 0h1m1 0h1m2 0h1m6 0h1m1 0h1M4 9.5h1m2 0h1m3 0h2m1 0h2m1 0h1m4 0h4m2 0h2m2 0h3m1 0h2M1 10.5h2m1 0h2m6 0h2m4 0h3m3 0h2m1 0h4m1 0h1m2 0h3M2 11.5h2m1 0h1m1 0h3m1 0h1m5 0h2m1 0h1m7 0h1m2 0h2m2 0h3M5 12.5h1m2 0h2m1 0h1m1 0h1m2 0h1m9 0h1m2 0h1m3 0h1m2 0h2M3 13.5h1m2 0h2m1 0h1m1 0h5m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h2m4 0h1M1 14.5h1m4 0h1m1 0h1m4 0h3m1 0h1m1 0h1m1 0h1m9 0h2m1 0h1m2 0h1M1 15.5h3m2 0h2m2 0h2m1 0h3m3 0h2m2 0h2m1 0h1m2 0h3m3 0h1m1 0h1M3 16.5h2m4 0h2m1 0h2m1 0h4m1 0h1m2 0h1m1 0h3m2 0h2m5 0h1M1 17.5h2m4 0h1m1 0h1m1 0h1m1 0h3m4 0h3m2 0h1m2 0h1m1 0h2m2 0h2m1 0h1M4 18.5h1m1 0h1m3 0h1m1 0h5m2 0h2m1 0h2m1 0h1m1 0h1m3 0h1m1 0h1m3 0h1M1 19.5h4m2 0h1m1 0h2m1 0h1m2 0h2m5 0h1m3 0h1m3 0h1m1 0h1m2 0h3M1 20.5h1m1 0h4m3 0h5m3 0h1m1 0h2m2 0h1m3 0h1m2 0h2m2 0h1M1 21.5h1m2 0h1m1 0h3m1 0h1m1 0h1m2 0h3m2 0h2m2 0h1m1 0h4m1 0h3m3 0h1M1 22.5h2m1 0h1m1 0h1m1 0h2m2 0h2m3 0h1m2 0h1m1 0h1m2 0h1m4 0h2m4 0h2M2 23.5h1m3 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h5m5 0h1m1 0h3m2 0h1M1 24.5h2m3 0h1m1 0h2m1 0h3m1 0h3m2 0h2m1 0h1m1 0h1m1 0h1m3 0h1m1 0h1m3 0h1M2 25.5h1m1 0h2m1 0h3m10 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m4 0h1M5 26.5h1m3 0h2m1 0h2m1 0h1m2 0h2m3 0h4m1 0h3m1 0h1m2 0h3M1 27.5h1m3 0h1m1 0h2m1 0h3m1 0h1m1 0h3m1 0h3m2 0h1m4 0h3m2 0h3M2 28.5h2m1 0h2m2 0h2m1 0h2m2 0h3m1 0h3m2 0h4m2 0h1M1 29.5h4m1 0h3m1 0h1m1 0h1m6 0h1m1 0h1m2 0h1m4 0h5m1 0h2M9 30.5h1m1 0h1m3 0h2m1 0h1m1 0h2m1 0h3m1 0h3m3 0h1m2 0h2M1 31.5h7m2 0h2m1 0h1m1 0h2m1 0h1m2 0h3m2 0h1m1 0h2m1 0h1m1 0h1m1 0h3M1 32.5h1m5 0h1m4 0h1m2 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h3M1 33.5h1m1 0h3m1 0h1m2 0h1m2 0h2m2 0h3m1 0h1m1 0h1m2 0h2m1 0h6M1 34.5h1m1 0h3m1 0h1m1 0h3m4 0h3m1 0h2m1 0h2m3 0h3m2 0h2m1 0h2M1 35.5h1m1 0h3m1 0h1m3 0h3m3 0h2m3 0h1m3 0h5m2 0h2m2 0h1M1 36.5h1m5 0h1m2 0h5m2 0h2m1 0h1m5 0h1m1 0h2m2 0h2M1 37.5h7m2 0h1m2 0h2m1 0h2m1 0h1m1 0h2m2 0h2m1 0h5m3 0h2"/></svg></div>
+            <span class="qr-scan" aria-hidden="true"></span>
+            <span class="qr-corner" aria-hidden="true"></span>
+          </div>
+          <div class="qr-info">
+            <span class="label">Abra no celular</span>
+            <p class="qr-t">Aponte a câmera do celular para o código.</p>
+            <div class="qr-tabs" role="tablist" aria-label="Escolha o que abrir">
+              <button type="button" role="tab" aria-selected="true" data-alvo="site">Site</button>
+              <button type="button" role="tab" aria-selected="false" data-alvo="insta">Instagram</button>
+            </div>
+            <a class="qr-link" href="https://instagram.com/eltonjunior.dev" target="_blank" rel="noopener">@eltonjunior.dev</a>
+          </div>
+        </div>
       </div>
 
       <div class="crows" data-reveal>
@@ -976,6 +1013,10 @@ img{max-width:100%}
         <a class="ci" href="https://github.com/Elton-Junior">
           <span class="sq" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.72c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.84c.85 0 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.35 4.81-4.58 5.06.36.32.68.95.68 1.91l-.01 2.84c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></span>
           <div><b>GitHub</b><span>github.com/Elton-Junior</span></div>
+        </a>
+        <a class="ci" href="https://instagram.com/eltonjunior.dev" target="_blank" rel="noopener">
+          <span class="sq" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span>
+          <div><b>Instagram</b><span>@eltonjunior.dev</span></div>
         </a>
         <div class="ci">
           <span class="sq" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-10a7 7 0 1 1 14 0c0 4.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg></span>
@@ -1530,6 +1571,18 @@ img{max-width:100%}
   if (reduce) { for (var i = 0; i < 40; i++) quadro(0); return; }
   new IntersectionObserver(function(es){ vis = es[0].isIntersecting; }).observe(cv);
   (function loop(ts){ requestAnimationFrame(loop); if (!vis || ts - ult < 33) return; ult = ts; quadro(ts); })();
+})();
+</script>
+<script>
+/* troca o QR Code entre o site e o Instagram */
+(function(){
+  var abas = document.querySelectorAll('.qr-tabs button'); if (!abas.length) return;
+  abas.forEach(function(b){
+    b.addEventListener('click', function(){
+      abas.forEach(function(x){ x.setAttribute('aria-selected', String(x === b)); });
+      document.querySelectorAll('.qr-face').forEach(function(f){ f.classList.toggle('on', f.dataset.qr === b.dataset.alvo); });
+    });
+  });
 })();
 </script>
 </body>
