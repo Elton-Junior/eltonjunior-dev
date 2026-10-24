@@ -382,9 +382,9 @@ h1,h2{letter-spacing:-.02em}
 .sec-head.in .glyph,.sec-head:not(.pre) .glyph{transform:none;opacity:1}
 .floaty{position:absolute;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(225,27,44,.16);pointer-events:none;z-index:0;white-space:nowrap;animation:floaty linear infinite}
 @keyframes floaty{from{transform:translateY(40px) rotate(-8deg)}to{transform:translateY(-120vh) rotate(8deg)}}
-/* ---- abertura: tela de erro com glitch ---- */
-#hud{position:fixed;inset:0;z-index:200;background:#050506;display:grid;place-items:center;transition:opacity .7s ease,visibility .7s}
-#hud.fora{opacity:0;visibility:hidden}
+/* ---- abertura: codigo caindo que se dissolve na tela inicial ---- */
+#hud{position:fixed;inset:0;z-index:200;background:#050506;display:grid;place-items:center;transition:opacity 1.2s ease,visibility 1.2s,transform 1.2s ease}
+#hud.fora{opacity:0;visibility:hidden;transform:scale(1.06)}
 #hud canvas{position:absolute;inset:0;width:100%;height:100%}
 #hud .skip{position:absolute;right:clamp(16px,3vw,40px);bottom:clamp(16px,4vh,40px);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#9A9AA3;background:transparent;border:1px solid #33333B;padding:9px 14px;cursor:pointer;z-index:2}
 #hud .skip:hover{color:#fff;border-color:var(--red)}
@@ -436,22 +436,7 @@ h1,h2{letter-spacing:-.02em}
 @keyframes desenha{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 .svc .vec{color:var(--red);filter:drop-shadow(0 0 10px rgba(225,27,44,.6));margin-bottom:4px}
 /* ---- abertura de erro ---- */
-#hud .eb{position:relative;z-index:1;width:min(92vw,760px);font-family:'JetBrains Mono',monospace;color:var(--ink)}
-#hud .boot{font-size:clamp(12px,1.6vw,15px);line-height:1.9;color:#9A9AA3;white-space:pre}
-#hud .boot b{color:var(--ok);font-weight:400}
-#hud .err{display:none;text-align:center}
-#hud .err .cod{display:inline-block;background:var(--red);color:#fff;font-weight:700;font-size:clamp(56px,13vw,150px);line-height:1;padding:8px 26px;letter-spacing:-.02em}
-#hud .err .tx{font-family:var(--display);font-size:clamp(22px,4vw,40px);text-transform:uppercase;margin-top:22px}
-#hud .err .cd{font-size:clamp(11px,1.4vw,13px);color:#9A9AA3;margin-top:14px}
-#hud .ok{display:none;text-align:center}
-#hud .ok .sym{font-weight:700;font-size:clamp(60px,14vw,150px);color:var(--ink);text-shadow:0 0 40px rgba(225,27,44,.8)}
-#hud .ok .sym i{font-style:normal;color:var(--red)}
-#hud .ok .nm{font-size:clamp(16px,2.6vw,26px);letter-spacing:.12em;margin-top:6px}
-#hud .ok .sb{font-size:clamp(10px,1.3vw,12px);letter-spacing:.24em;color:#9A9AA3;margin-top:10px}
-#hud .joke{display:none;text-align:center;font-family:var(--display);font-size:clamp(26px,5vw,52px);text-transform:uppercase}
-#hud .joke em{font-style:normal;color:var(--red)}
-#hud canvas{opacity:.5;image-rendering:pixelated}
-/* chuva de codigo formando o hacker de capuz */
+/* chuva de codigo no topo */
 .stage .rain{position:absolute;left:0;top:0;width:min(48%,760px);height:100%;z-index:-1;pointer-events:none;
   -webkit-mask-image:linear-gradient(90deg,#000 55%,transparent),linear-gradient(#000 70%,transparent);-webkit-mask-composite:source-in;
   mask-image:linear-gradient(90deg,#000 55%,transparent),linear-gradient(#000 70%,transparent);mask-composite:intersect}
@@ -1390,7 +1375,7 @@ img{max-width:100%}
 })();
 </script>
 <script>
-/* abertura de erro (uma vez por sessao) + simbolos <|> no site */
+/* abertura com codigo caindo (uma vez por sessao) + simbolos <|> no site */
 (function(){
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hud = document.getElementById('hud');
@@ -1415,61 +1400,42 @@ img{max-width:100%}
   try { visto = sessionStorage.getItem('hud') === '1'; } catch (e) {}
   if (reduce || visto) { hud.parentNode.removeChild(hud); return; }
 
-  var cv = document.getElementById('hudc'), ctx = cv.getContext('2d'), t0 = null, fim = false;
-  cv.width = 160; cv.height = 90;
-  var box = document.createElement('div'); box.className = 'eb';
-  box.innerHTML = '<div class="boot"></div>' +
-    '<div class="err"><div class="cod">ERRO 404</div><div class="tx">Portfólio não encontrado</div><div class="cd">GET /portfolio  →  404  (servidor caiu?)</div></div>' +
-    '<div class="joke"></div>' +
-    '<div class="ok"><div class="sym">&lt;<i>|</i>&gt;</div><div class="nm">ELTONJUNIOR.DEV</div><div class="sb">SISTEMAS EM PRODUÇÃO · NADA CAI</div></div>';
-  hud.insertBefore(box, hud.querySelector('.skip'));
-  var boot = box.querySelector('.boot'), err = box.querySelector('.err'), joke = box.querySelector('.joke'), ok = box.querySelector('.ok');
-  var linhas = ['$ conectando a eltonjunior.dev', '  carregando sistemas ... <b>11/11 ok</b>', '  carregando portfólio ...'];
+  var cv = document.getElementById('hudc'), ctx = cv.getContext('2d'), t0 = null, fim = false, W, H, CW = 16, LH = 19, cols, rows, cab = [], vel = [];
+  var CH = '01<|>{}#$=+*/;0101';
+  function size(){
+    var dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Math.ceil(W / CW); rows = Math.ceil(H / LH); cab = []; vel = [];
+    for (var c = 0; c < cols; c++) { cab.push(-Math.random() * rows * .35); vel.push(.9 + Math.random() * 1.1); }
+  }
+  size(); addEventListener('resize', size);
   document.documentElement.style.overflow = 'hidden';
   function sair(){
     if (fim) return; fim = true;
     try { sessionStorage.setItem('hud', '1'); } catch (e) {}
     hud.classList.add('fora'); document.documentElement.style.overflow = '';
-    setTimeout(function(){ if (hud.parentNode) hud.parentNode.removeChild(hud); }, 800);
+    setTimeout(function(){ if (hud.parentNode) hud.parentNode.removeChild(hud); }, 1300);
   }
   hud.querySelector('.skip').addEventListener('click', sair);
-  function ruido(forca){
-    var img = ctx.createImageData(160, 90), d = img.data;
-    for (var i = 0; i < d.length; i += 4) { var v = Math.random() * 255 * forca; d[i] = v; d[i + 1] = v * .25; d[i + 2] = v * .3; d[i + 3] = 255; }
-    ctx.putImageData(img, 0, 0);
-  }
   function frame(ts){
-    if (fim) return;
+    if (!hud.parentNode) return;
     if (t0 === null) t0 = ts;
-    var t = (ts - t0) / 1000, sh = 0;
-    if (t < 1) {
-      var n = Math.floor(t * 70), txt = linhas.join('\n'), vis = '', k = 0;
-      // digita as linhas, mantendo as tags inteiras
-      for (var i = 0; i < txt.length && k < n; i++) { if (txt[i] === '<') { var j = txt.indexOf('>', i); vis += txt.slice(i, j + 1); i = j; continue; } vis += txt[i]; k++; }
-      boot.innerHTML = vis + (Math.floor(t * 6) % 2 ? '_' : ' ');
-      ruido(.08);
-    } else if (t < 2.5) {
-      boot.style.display = 'none'; err.style.display = 'block';
-      var forte = t < 1.25 ? 1 : .35 + .25 * Math.random();
-      sh = forte; ruido(.25 + .6 * forte * Math.random());
-      var cod = err.querySelector('.cod');
-      cod.style.clipPath = Math.random() < .25 ? 'inset(' + (Math.random() * 50) + '% 0 ' + (Math.random() * 40) + '% 0)' : 'none';
-      cod.style.transform = 'skewX(' + ((Math.random() - .5) * 20 * forte) + 'deg)';
-    } else if (t < 3.2) {
-      err.style.display = 'none'; joke.style.display = 'block';
-      var frase = 'Brincadeira. <em>Aqui nada cai.</em>', m = Math.floor((t - 2.5) * 50), out = '', c = 0;
-      for (var q = 0; q < frase.length && c < m; q++) { if (frase[q] === '<') { var e = frase.indexOf('>', q); out += frase.slice(q, e + 1); q = e; continue; } out += frase[q]; c++; }
-      joke.innerHTML = out; ruido(.06);
-    } else {
-      joke.style.display = 'none'; ok.style.display = 'block';
-      var a2 = Math.min(1, (t - 3.2) / .3); ok.style.opacity = a2; ok.style.transform = 'scale(' + (1.25 - .25 * a2) + ')'; sh = (1 - a2) * .8; ruido(.04 * (1 - a2));
+    var t = (ts - t0) / 1000;
+    // rastro: escurece o quadro anterior em vez de apagar
+    ctx.fillStyle = 'rgba(5,5,6,.18)'; ctx.fillRect(0, 0, W, H);
+    ctx.font = '600 15px "JetBrains Mono",monospace'; ctx.textBaseline = 'top';
+    for (var c = 0; c < cols; c++) {
+      cab[c] += vel[c];
+      var y = Math.floor(cab[c]);
+      if (y >= 0) {
+        ctx.fillStyle = 'rgba(255,235,238,.95)'; ctx.fillText(CH[(Math.random() * CH.length) | 0], c * CW, y * LH);
+        ctx.fillStyle = 'rgba(225,27,44,.9)'; ctx.fillText(CH[(Math.random() * CH.length) | 0], c * CW, (y - 1) * LH);
+      }
+      if (y > rows && Math.random() > .96) { cab[c] = -Math.random() * 8; vel[c] = .9 + Math.random() * 1.1; }
     }
-    box.style.transform = sh ? 'translate(' + ((Math.random() - .5) * 30 * sh) + 'px,' + ((Math.random() - .5) * 18 * sh) + 'px)' : 'none';
-    box.style.filter = sh ? 'drop-shadow(' + (10 * sh) + 'px 0 0 rgba(0,229,255,.7)) drop-shadow(' + (-10 * sh) + 'px 0 0 rgba(225,27,44,.9))' : 'none';
-    if (t > 4.1) { sair(); return; }
+    if (t > 2.2 && !fim) sair();
     requestAnimationFrame(frame);
   }
-  (document.fonts ? document.fonts.ready : Promise.resolve()).then(function(){ requestAnimationFrame(frame); });
+  requestAnimationFrame(frame);
   setTimeout(sair, 7000); // seguranca: nunca prende o visitante
 })();
 </script>
@@ -1530,30 +1496,13 @@ img{max-width:100%}
 })();
 </script>
 <script>
-/* chuva de codigo no lado esquerdo do palco; a silhueta de um hacker de capuz surge dos caracteres */
+/* chuva de codigo no lado esquerdo do palco */
 (function(){
   var cv = document.querySelector('.stage .rain'); if (!cv) return;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ctx = cv.getContext('2d'), FS = 15, CW = 14, LH = 17, W, H, cols, rows, cab = [], vel = [], grade = [], mask = null, vis = true, ult = 0;
   var CH = '01<|>{}#$=+*/;01010101';
-  function silhueta(){
-    // desenha o capuz numa tela auxiliar e guarda onde ha figura (1), rosto vazio (2) ou fundo (0)
-    var m = document.createElement('canvas'); m.width = cols; m.height = rows;
-    var c = m.getContext('2d'), w = cols, h = rows, bw = Math.min(w * .9, h * .72), x0 = (w - bw) * .45, y0 = h * .1, bh = bw * 1.25;
-    var P = function(px, py){ return [x0 + px * bw, y0 + py * bh]; };
-    c.fillStyle = '#fff'; c.beginPath();
-    var a = P(0, 1), b = P(.16, .66), pk = P(.5, -.04), d = P(.84, .66), e = P(1, 1);
-    c.moveTo(a[0], a[1]); c.quadraticCurveTo(P(.02, .74)[0], P(.02, .74)[1], b[0], b[1]);
-    c.bezierCurveTo(P(.1, .2)[0], P(.1, .2)[1], P(.3, -.04)[0], P(.3, -.04)[1], pk[0], pk[1]);
-    c.bezierCurveTo(P(.7, -.04)[0], P(.7, -.04)[1], P(.9, .2)[0], P(.9, .2)[1], d[0], d[1]);
-    c.quadraticCurveTo(P(.98, .74)[0], P(.98, .74)[1], e[0], e[1]); c.closePath(); c.fill();
-    c.fillStyle = '#f00'; c.beginPath(); c.ellipse(P(.5, .44)[0], P(.5, .44)[1], bw * .2, bh * .2, 0, 0, Math.PI * 2); c.fill();
-    var px = c.getImageData(0, 0, w, h).data; mask = new Uint8Array(w * h);
-    for (var i = 0; i < w * h; i++) mask[i] = px[i * 4 + 1] > 128 ? 1 : (px[i * 4] > 128 ? 2 : 0);
-    var borda = new Uint8Array(w * h);
-    for (var y = 1; y < h - 1; y++) for (var x = 1; x < w - 1; x++) { var q = y * w + x; if (mask[q] !== 1) continue; if (mask[q - 1] !== 1 || mask[q + 1] !== 1 || mask[q - w] !== 1 || mask[q + w] !== 1) borda[q] = 1; }
-    for (var j = 0; j < w * h; j++) if (borda[j]) mask[j] = 3;
-  }
+  function silhueta(){ mask = new Uint8Array(cols * rows); }
   function size(){
     var dpr = Math.min(devicePixelRatio || 1, 2);
     W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -1569,7 +1518,7 @@ img{max-width:100%}
       for (var r = 0; r < rows; r++) {
         var k = r * cols + c, m = mask[k], d = cab[c] - r, rastro = d >= 0 && d < 22 ? 1 - d / 22 : 0;
         if (m === 2) { if (rastro > .85) { ctx.fillStyle = 'rgba(225,27,44,.25)'; ctx.fillText(grade[k], c * CW, r * LH); } continue; }
-        var a = m === 3 ? .75 + rastro * .25 : m === 1 ? .38 + rastro * .62 : rastro * .22;
+        var a = rastro * .55;
         if (a < .04) continue;
         if (Math.random() < .02) grade[k] = CH[(Math.random() * CH.length) | 0];
         ctx.fillStyle = d >= 0 && d < 1 ? 'rgba(255,235,238,' + a + ')' : (m === 3 ? 'rgba(255,120,130,' + a + ')' : m === 1 ? 'rgba(255,' + (40 + rastro * 70 | 0) + ',60,' + a + ')' : 'rgba(150,20,30,' + a + ')');
