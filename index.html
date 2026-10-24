@@ -382,12 +382,75 @@ h1,h2{letter-spacing:-.02em}
 .sec-head.in .glyph,.sec-head:not(.pre) .glyph{transform:none;opacity:1}
 .floaty{position:absolute;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(225,27,44,.16);pointer-events:none;z-index:0;white-space:nowrap;animation:floaty linear infinite}
 @keyframes floaty{from{transform:translateY(40px) rotate(-8deg)}to{transform:translateY(-120vh) rotate(8deg)}}
-/* ---- abertura HUD: olho que revela o simbolo ---- */
+/* ---- abertura: tela de erro com glitch ---- */
 #hud{position:fixed;inset:0;z-index:200;background:#050506;display:grid;place-items:center;transition:opacity .7s ease,visibility .7s}
 #hud.fora{opacity:0;visibility:hidden}
 #hud canvas{position:absolute;inset:0;width:100%;height:100%}
 #hud .skip{position:absolute;right:clamp(16px,3vw,40px);bottom:clamp(16px,4vh,40px);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#9A9AA3;background:transparent;border:1px solid #33333B;padding:9px 14px;cursor:pointer;z-index:2}
 #hud .skip:hover{color:#fff;border-color:var(--red)}
+/* ---- orcamento ---- */
+.orc-gl{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.45;pointer-events:none}
+.orc-intro{color:var(--muted);max-width:62ch;margin-top:18px}
+.orc{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(20px,3vw,40px);margin-top:34px;align-items:start}
+@media (max-width:900px){.orc{grid-template-columns:1fr}}
+.orc-form fieldset{border:0;padding:0;margin:0 0 28px}
+.orc-form legend{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;display:flex;gap:10px;align-items:center}
+.orc-form legend b{color:var(--red)}
+.orc-tipos{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (max-width:640px){.orc-tipos{grid-template-columns:1fr 1fr}}
+.tipo{position:relative;display:flex;flex-direction:column;gap:8px;padding:18px 14px;border:1px solid var(--line);background:rgba(18,18,22,.85);cursor:pointer;transition:border-color .2s,transform .2s,background .2s}
+.tipo input{position:absolute;opacity:0;pointer-events:none}
+.tipo .vec{color:var(--red)}
+.tipo b{font-family:var(--display);font-weight:400;font-size:17px;text-transform:uppercase}
+.tipo small{color:var(--faint);font-size:12px;line-height:1.35}
+.tipo:hover{transform:translateY(-3px)}
+.tipo:has(input:checked){border-color:var(--red);background:rgba(225,27,44,.1);box-shadow:0 0 30px -8px rgba(225,27,44,.6)}
+.tipo:has(input:focus-visible),.chip:has(input:focus-visible){outline:2px solid var(--red);outline-offset:2px}
+.orc-chips,.orc-prazo{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;cursor:pointer}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;font-size:13.5px;padding:9px 14px;border:1px solid var(--line);background:rgba(18,18,22,.85);transition:all .2s}
+.chip:hover span{border-color:#55555E}
+.chip input:checked+span{border-color:var(--red);background:var(--red);color:#fff;box-shadow:0 0 18px -4px rgba(225,27,44,.8)}
+.orc-range{display:flex;align-items:center;gap:16px}
+.orc-range input{flex:1;accent-color:var(--red)}
+.orc-range output{font-family:var(--display);font-size:28px;color:var(--red);min-width:2ch;text-align:right}
+.orc-res{position:sticky;top:90px;border:1px solid rgba(225,27,44,.5);background:rgba(10,10,11,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);padding:26px;display:flex;flex-direction:column;gap:16px;box-shadow:0 30px 80px -30px rgba(225,27,44,.45)}
+.orc-nivel{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.orc-nivel b{font-family:var(--display);font-weight:400;font-size:clamp(26px,3vw,36px);text-transform:uppercase;color:var(--red)}
+.orc-nivel span{font-family:var(--mono);font-size:11px;color:var(--faint)}
+.orc-bar{height:8px;background:var(--line);overflow:hidden}
+.orc-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red-deep),var(--red),#ff6b77);box-shadow:0 0 16px var(--red);transition:width .6s cubic-bezier(.2,.7,.3,1)}
+#orc-lista{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;font-size:13.5px;color:var(--muted)}
+#orc-lista li::before{content:"<|> ";font-family:var(--mono);color:var(--red);font-size:11px}
+.orc-etapas{display:flex;flex-wrap:wrap;gap:6px}
+.orc-etapas span{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);padding:5px 8px;color:var(--faint);animation:etapa 5s infinite}
+.orc-etapas span:nth-child(2){animation-delay:1s}.orc-etapas span:nth-child(3){animation-delay:2s}.orc-etapas span:nth-child(4){animation-delay:3s}.orc-etapas span:nth-child(5){animation-delay:4s}
+@keyframes etapa{0%,15%{color:#fff;border-color:var(--red);background:rgba(225,27,44,.2)}25%,100%{color:var(--faint);border-color:var(--line);background:transparent}}
+.orc-nota{color:var(--faint);font-size:12px}
+.pulse{animation:pulseb .5s ease}
+@keyframes pulseb{50%{transform:scale(1.06)}}
+/* icones vetoriais que se desenham */
+.vec path{stroke-dasharray:1;stroke-dashoffset:0}
+.vec.desenha path{animation:desenha 1.2s cubic-bezier(.6,0,.2,1) both}
+@keyframes desenha{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.svc .vec{color:var(--red);filter:drop-shadow(0 0 10px rgba(225,27,44,.6));margin-bottom:4px}
+/* ---- abertura de erro ---- */
+#hud .eb{position:relative;z-index:1;width:min(92vw,760px);font-family:'JetBrains Mono',monospace;color:var(--ink)}
+#hud .boot{font-size:clamp(12px,1.6vw,15px);line-height:1.9;color:#9A9AA3;white-space:pre}
+#hud .boot b{color:var(--ok);font-weight:400}
+#hud .err{display:none;text-align:center}
+#hud .err .cod{display:inline-block;background:var(--red);color:#fff;font-weight:700;font-size:clamp(56px,13vw,150px);line-height:1;padding:8px 26px;letter-spacing:-.02em}
+#hud .err .tx{font-family:var(--display);font-size:clamp(22px,4vw,40px);text-transform:uppercase;margin-top:22px}
+#hud .err .cd{font-size:clamp(11px,1.4vw,13px);color:#9A9AA3;margin-top:14px}
+#hud .ok{display:none;text-align:center}
+#hud .ok .sym{font-weight:700;font-size:clamp(60px,14vw,150px);color:var(--ink);text-shadow:0 0 40px rgba(225,27,44,.8)}
+#hud .ok .sym i{font-style:normal;color:var(--red)}
+#hud .ok .nm{font-size:clamp(16px,2.6vw,26px);letter-spacing:.12em;margin-top:6px}
+#hud .ok .sb{font-size:clamp(10px,1.3vw,12px);letter-spacing:.24em;color:#9A9AA3;margin-top:10px}
+#hud .joke{display:none;text-align:center;font-family:var(--display);font-size:clamp(26px,5vw,52px);text-transform:uppercase}
+#hud .joke em{font-style:normal;color:var(--red)}
+#hud canvas{opacity:.5;image-rendering:pixelated}
 /* barra de progresso de leitura */
 .progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--red-deep),var(--red),#ff6b77);z-index:100;box-shadow:0 0 12px var(--red)}
 [data-reveal].pre{opacity:0;transform:translateY(36px) scale(.985);filter:blur(10px)}
@@ -414,6 +477,7 @@ img{max-width:100%}
       <a href="#servicos">Serviços</a>
       <a href="#processo">Processo</a>
       <a href="#github">GitHub</a>
+      <a href="#orcamento">Orçamento</a>
       <a href="#contato">Contato</a>
     </nav>
     <a class="btn btn-cta btn-sm" href="https://wa.me/5511913633327?text=Ol%C3%A1%20Elton%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20falar%20sobre%20um%20projeto.">WhatsApp</a>
@@ -803,6 +867,53 @@ img{max-width:100%}
         <div class="lw"><div class="lbar"><i style="width:89.1%;background:var(--muted)"></i><i style="width:8.2%;background:var(--red)"></i><i style="width:1.4%;background:var(--ok)"></i></div><span class="llab">HTML 89% · JavaScript 8% · PowerShell 1%</span></div>
         <span class="rc">41 commits</span><span class="vis">privado</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="orcamento" style="border-top:1px solid var(--line)">
+  <canvas class="orc-gl" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="sec-head" data-reveal><h2>Monte seu orçamento</h2><span class="rule"></span><span class="side">Site e aplicativo</span></div>
+    <p class="orc-intro" data-reveal>Escolha o tipo de projeto e o que ele precisa ter. Na hora você vê a complexidade estimada e manda tudo pronto pelo WhatsApp. O valor sai na conversa, depois do diagnóstico.</p>
+    <div class="orc" data-reveal>
+      <form class="orc-form" onsubmit="return false">
+        <fieldset><legend><b>01</b> O que você precisa?</legend><div class="orc-tipos">
+          <label class="tipo"><input type="radio" name="tipo" value="site" data-nome="Site" checked><svg class="vec" viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M6 8h36v28H6zM6 14h36M16 42h16M24 36v6"/></svg><b>Site</b><small>Institucional ou landing page</small></label>
+          <label class="tipo"><input type="radio" name="tipo" value="loja" data-nome="Loja virtual"><svg class="vec" viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M4 8h6l5 22h22l5-16H13M19 40a3 3 0 1 0 0.1 0M33 40a3 3 0 1 0 0.1 0"/></svg><b>Loja virtual</b><small>Catálogo, carrinho e pagamento</small></label>
+          <label class="tipo"><input type="radio" name="tipo" value="sistema" data-nome="Sistema web"><svg class="vec" viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M8 6h32v12H8zM8 22h32v12H8zM8 38h32v6H8zM14 12h4M14 28h4M30 12h6M30 28h6"/></svg><b>Sistema web</b><small>SaaS, painel, CRM, gestão</small></label>
+          <label class="tipo"><input type="radio" name="tipo" value="app" data-nome="Aplicativo"><svg class="vec" viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="M14 4h20v40H14zM14 10h20M14 36h20M22 40h4"/></svg><b>Aplicativo</b><small>Android e iOS</small></label>
+        </div></fieldset>
+        <fieldset><legend><b>02</b> Recursos</legend><div class="orc-chips">
+          <label class="chip"><input type="checkbox" value="Login de usuários" data-p="2"><span>Login de usuários</span></label>
+          <label class="chip"><input type="checkbox" value="Painel administrativo" data-p="2"><span>Painel administrativo</span></label>
+          <label class="chip"><input type="checkbox" value="Pagamento online (Pix e cartão)" data-p="3"><span>Pagamento online (Pix e cartão)</span></label>
+          <label class="chip"><input type="checkbox" value="Integração com WhatsApp" data-p="2"><span>Integração com WhatsApp</span></label>
+          <label class="chip"><input type="checkbox" value="Automação com IA" data-p="3"><span>Automação com IA</span></label>
+          <label class="chip"><input type="checkbox" value="Agendamento" data-p="2"><span>Agendamento</span></label>
+          <label class="chip"><input type="checkbox" value="Relatórios e gráficos" data-p="2"><span>Relatórios e gráficos</span></label>
+          <label class="chip"><input type="checkbox" value="Várias empresas (multiempresa)" data-p="3"><span>Várias empresas (multiempresa)</span></label>
+          <label class="chip"><input type="checkbox" value="Blog ou conteúdo" data-p="1"><span>Blog ou conteúdo</span></label>
+          <label class="chip"><input type="checkbox" value="Domínio e hospedagem" data-p="1"><span>Domínio e hospedagem</span></label>
+        </div></fieldset>
+        <fieldset><legend><b>03</b> Quantas páginas ou telas?</legend>
+          <div class="orc-range"><input type="range" id="orc-pag" min="1" max="30" value="5" aria-label="Quantidade de páginas ou telas"><output id="orc-pag-v">5</output></div>
+        </fieldset>
+        <fieldset><legend><b>04</b> Prazo</legend><div class="orc-prazo">
+          <label class="chip"><input type="radio" name="prazo" value="Sem pressa"><span>Sem pressa</span></label>
+          <label class="chip"><input type="radio" name="prazo" value="Normal" checked><span>Normal</span></label>
+          <label class="chip"><input type="radio" name="prazo" value="Urgente"><span>Urgente</span></label>
+        </div></fieldset>
+      </form>
+      <aside class="orc-res" aria-live="polite">
+        <span class="label">Seu projeto</span>
+        <div class="orc-nivel"><b id="orc-nivel">Simples</b><span id="orc-pts">0 pontos</span></div>
+        <div class="orc-bar"><i id="orc-bar"></i></div>
+        <ul id="orc-lista"></ul>
+        <div class="orc-etapas"><span>Diagnóstico</span><span>Especificação</span><span>Construção</span><span>Produção</span><span>Operação</span></div>
+        <a class="btn btn-cta" id="orc-wa" href="https://wa.me/5511913633327">Enviar para orçamento no WhatsApp</a>
+        <small class="orc-nota">Sem compromisso. A resposta vem pelo próprio WhatsApp.</small>
+      </aside>
     </div>
   </div>
 </section>
@@ -1273,7 +1384,7 @@ img{max-width:100%}
 })();
 </script>
 <script>
-/* abertura HUD (uma vez por sessao) + simbolos <|> no site */
+/* abertura de erro (uma vez por sessao) + simbolos <|> no site */
 (function(){
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hud = document.getElementById('hud');
@@ -1298,9 +1409,16 @@ img{max-width:100%}
   try { visto = sessionStorage.getItem('hud') === '1'; } catch (e) {}
   if (reduce || visto) { hud.parentNode.removeChild(hud); return; }
 
-  var cv = document.getElementById('hudc'), ctx = cv.getContext('2d'), W, H, dpr = Math.min(devicePixelRatio || 1, 2), t0 = null, fim = false;
-  function size(){ W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
-  size(); addEventListener('resize', size);
+  var cv = document.getElementById('hudc'), ctx = cv.getContext('2d'), t0 = null, fim = false;
+  cv.width = 160; cv.height = 90;
+  var box = document.createElement('div'); box.className = 'eb';
+  box.innerHTML = '<div class="boot"></div>' +
+    '<div class="err"><div class="cod">ERRO 404</div><div class="tx">Portfólio não encontrado</div><div class="cd">GET /portfolio  →  404  (servidor caiu?)</div></div>' +
+    '<div class="joke"></div>' +
+    '<div class="ok"><div class="sym">&lt;<i>|</i>&gt;</div><div class="nm">ELTONJUNIOR.DEV</div><div class="sb">SISTEMAS EM PRODUÇÃO · NADA CAI</div></div>';
+  hud.insertBefore(box, hud.querySelector('.skip'));
+  var boot = box.querySelector('.boot'), err = box.querySelector('.err'), joke = box.querySelector('.joke'), ok = box.querySelector('.ok');
+  var linhas = ['$ conectando a eltonjunior.dev', '  carregando sistemas ... <b>11/11 ok</b>', '  carregando portfólio ...'];
   document.documentElement.style.overflow = 'hidden';
   function sair(){
     if (fim) return; fim = true;
@@ -1309,83 +1427,100 @@ img{max-width:100%}
     setTimeout(function(){ if (hud.parentNode) hud.parentNode.removeChild(hud); }, 800);
   }
   hud.querySelector('.skip').addEventListener('click', sair);
-
-  var fibras = []; for (var i = 0; i < 260; i++) fibras.push({ a: i / 260 * Math.PI * 2 + Math.random() * .02, l: .55 + Math.random() * .45, w: .6 + Math.random() * 1.6, c: Math.random() });
-  var ease = function(x){ x = Math.min(Math.max(x, 0), 1); return 1 - Math.pow(1 - x, 3); };
-  var font = '"JetBrains Mono",monospace';
-
+  function ruido(forca){
+    var img = ctx.createImageData(160, 90), d = img.data;
+    for (var i = 0; i < d.length; i += 4) { var v = Math.random() * 255 * forca; d[i] = v; d[i + 1] = v * .25; d[i + 2] = v * .3; d[i + 3] = 255; }
+    ctx.putImageData(img, 0, 0);
+  }
   function frame(ts){
     if (fim) return;
     if (t0 === null) t0 = ts;
-    var t = (ts - t0) / 1000, cx = W / 2, cy = H / 2, R = Math.min(W, H) * .28;
-    ctx.fillStyle = '#050506'; ctx.fillRect(0, 0, W, H);
-    // grade e linhas de HUD
-    ctx.strokeStyle = 'rgba(225,27,44,.10)'; ctx.lineWidth = 1;
-    for (var x = (t * 20) % 48; x < W; x += 48) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
-    for (var y = 0; y < H; y += 48) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
-    var abre = ease((t - .3) / 1.1), zoom = 1 + Math.pow(Math.max(0, t - 2.5), 2) * 9;
-    // contorno do olho (amendoa) que se abre
-    ctx.save(); ctx.translate(cx, cy); ctx.scale(zoom, zoom);
-    var ew = R * 2.1, eh = R * 1.15 * abre + 2;
-    ctx.strokeStyle = 'rgba(225,27,44,.85)'; ctx.lineWidth = 2 / zoom;
-    ctx.beginPath(); ctx.moveTo(-ew, 0); ctx.quadraticCurveTo(0, -eh * 1.6, ew, 0); ctx.quadraticCurveTo(0, eh * 1.6, -ew, 0); ctx.stroke();
-    ctx.save(); ctx.clip();
-    // iris: fibras girando, do laranja ao vermelho
-    var rot = t * .6;
-    for (var k = 0; k < fibras.length; k++) {
-      var f = fibras[k], a = f.a + rot, r0 = R * .26, r1 = R * (.55 + .45 * f.l);
-      ctx.strokeStyle = f.c > .5 ? 'rgba(255,' + (90 + f.c * 60 | 0) + ',60,.85)' : 'rgba(225,27,44,.8)';
-      ctx.lineWidth = f.w; ctx.beginPath(); ctx.moveTo(Math.cos(a) * r0, Math.sin(a) * r0); ctx.lineTo(Math.cos(a + .05) * r1, Math.sin(a + .05) * r1); ctx.stroke();
+    var t = (ts - t0) / 1000, sh = 0;
+    if (t < 1) {
+      var n = Math.floor(t * 70), txt = linhas.join('\n'), vis = '', k = 0;
+      // digita as linhas, mantendo as tags inteiras
+      for (var i = 0; i < txt.length && k < n; i++) { if (txt[i] === '<') { var j = txt.indexOf('>', i); vis += txt.slice(i, j + 1); i = j; continue; } vis += txt[i]; k++; }
+      boot.innerHTML = vis + (Math.floor(t * 6) % 2 ? '_' : ' ');
+      ruido(.08);
+    } else if (t < 2.5) {
+      boot.style.display = 'none'; err.style.display = 'block';
+      var forte = t < 1.25 ? 1 : .35 + .25 * Math.random();
+      sh = forte; ruido(.25 + .6 * forte * Math.random());
+      var cod = err.querySelector('.cod');
+      cod.style.clipPath = Math.random() < .25 ? 'inset(' + (Math.random() * 50) + '% 0 ' + (Math.random() * 40) + '% 0)' : 'none';
+      cod.style.transform = 'skewX(' + ((Math.random() - .5) * 20 * forte) + 'deg)';
+    } else if (t < 3.2) {
+      err.style.display = 'none'; joke.style.display = 'block';
+      var frase = 'Brincadeira. <em>Aqui nada cai.</em>', m = Math.floor((t - 2.5) * 50), out = '', c = 0;
+      for (var q = 0; q < frase.length && c < m; q++) { if (frase[q] === '<') { var e = frase.indexOf('>', q); out += frase.slice(q, e + 1); q = e; continue; } out += frase[q]; c++; }
+      joke.innerHTML = out; ruido(.06);
+    } else {
+      joke.style.display = 'none'; ok.style.display = 'block';
+      var a2 = Math.min(1, (t - 3.2) / .3); ok.style.opacity = a2; ok.style.transform = 'scale(' + (1.25 - .25 * a2) + ')'; sh = (1 - a2) * .8; ruido(.04 * (1 - a2));
     }
-    var gl = ctx.createRadialGradient(0, 0, R * .2, 0, 0, R); gl.addColorStop(0, 'rgba(255,120,60,.35)'); gl.addColorStop(1, 'rgba(5,5,6,.6)');
-    ctx.fillStyle = gl; ctx.beginPath(); ctx.arc(0, 0, R, 0, 7); ctx.fill();
-    // pupila com o simbolo
-    var pr = R * (.26 + .04 * Math.sin(t * 3));
-    ctx.fillStyle = '#050506'; ctx.beginPath(); ctx.arc(0, 0, pr, 0, 7); ctx.fill();
-    ctx.restore();
-    // aneis segmentados travando
-    for (var n = 0; n < 3; n++) {
-      var rr = R * (1.15 + n * .14), seg = 12 + n * 6, trava = ease((t - 1.2 - n * .15) / .6), sp = (1 - trava) * (n % 2 ? -3 : 3) + (n % 2 ? -.2 : .2);
-      ctx.strokeStyle = 'rgba(225,27,44,' + (.35 + .25 * n) + ')'; ctx.lineWidth = (3 - n) / zoom;
-      for (var q = 0; q < seg; q++) { if (q % 3 === 2) continue; var a0 = q / seg * Math.PI * 2 + t * sp; ctx.beginPath(); ctx.arc(0, 0, rr, a0, a0 + Math.PI * 2 / seg * .7); ctx.stroke(); }
-    }
-    // simbolo <|> nasce dentro da pupila
-    var sa = ease((t - 1.9) / .5);
-    if (sa > 0) {
-      ctx.fillStyle = 'rgba(255,255,255,' + sa + ')'; ctx.shadowColor = '#E11B2C'; ctx.shadowBlur = 30;
-      ctx.font = '700 ' + (pr * .9) + 'px ' + font; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      var gx = (Math.random() - .5) * 10 * (1 - sa);
-      ctx.fillText('<', -pr * .45 + gx, 0); ctx.fillText('>', pr * .45 + gx, 0);
-      ctx.fillStyle = 'rgba(225,27,44,' + sa + ')'; ctx.fillText('|', gx, 0); ctx.shadowBlur = 0;
-    }
-    ctx.restore();
-    // textos de HUD nos cantos
-    if (zoom < 3) {
-      ctx.font = '12px ' + font; ctx.fillStyle = 'rgba(225,27,44,.9)'; ctx.textAlign = 'left';
-      var lin = ['SCAN // ELTONJUNIOR.DEV', 'NÚCLEO: ' + Math.min(100, Math.floor(t * 45)) + '%', t > 1.6 ? 'ACESSO LIBERADO' : 'VERIFICANDO IDENTIDADE...'];
-      lin.forEach(function(l, j){ ctx.fillText(l, 24, 40 + j * 20); });
-      ctx.textAlign = 'right'; ctx.fillStyle = 'rgba(244,243,241,.6)';
-      ctx.fillText(new Date().toLocaleTimeString('pt-BR'), W - 24, 40); ctx.fillText('SISTEMAS EM PRODUÇÃO', W - 24, 60);
-    }
-    // revelacao final do nome
-    var na = ease((t - 2.7) / .5);
-    if (na > 0) {
-      ctx.fillStyle = 'rgba(5,5,6,' + Math.min(1, na) + ')'; ctx.fillRect(0, 0, W, H);
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      var s1 = Math.min(W * .16, 150);
-      ctx.font = '700 ' + s1 + 'px ' + font; ctx.shadowColor = '#E11B2C'; ctx.shadowBlur = 40 * na;
-      ctx.fillStyle = 'rgba(244,243,241,' + na + ')'; ctx.fillText('<  >', cx, cy - s1 * .3);
-      ctx.fillStyle = 'rgba(225,27,44,' + na + ')'; ctx.fillText('|', cx, cy - s1 * .3); ctx.shadowBlur = 0;
-      ctx.font = Math.max(16, s1 * .2) + 'px ' + font; ctx.fillStyle = 'rgba(244,243,241,' + na + ')';
-      ctx.fillText('ELTONJUNIOR.DEV', cx, cy + s1 * .55);
-      ctx.fillStyle = 'rgba(154,154,163,' + na + ')'; ctx.font = Math.max(11, s1 * .1) + 'px ' + font;
-      ctx.fillText('T.I. & AUTOMAÇÃO COM IA', cx, cy + s1 * .85);
-    }
-    if (t > 3.9) { sair(); return; }
+    box.style.transform = sh ? 'translate(' + ((Math.random() - .5) * 30 * sh) + 'px,' + ((Math.random() - .5) * 18 * sh) + 'px)' : 'none';
+    box.style.filter = sh ? 'drop-shadow(' + (10 * sh) + 'px 0 0 rgba(0,229,255,.7)) drop-shadow(' + (-10 * sh) + 'px 0 0 rgba(225,27,44,.9))' : 'none';
+    if (t > 4.1) { sair(); return; }
     requestAnimationFrame(frame);
   }
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(function(){ requestAnimationFrame(frame); });
   setTimeout(sair, 7000); // seguranca: nunca prende o visitante
+})();
+</script>
+<script>
+/* orcamento, icones vetoriais dos servicos e shader fluido */
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ICO = {servidor:'M8 6h32v12H8zM8 22h32v12H8zM8 38h32v6H8zM14 12h4M14 28h4M30 12h6M30 28h6',zap:'M26 4L10 26h12l-4 18 18-24H24z',carrinho:'M4 8h6l5 22h22l5-16H13M19 40a3 3 0 1 0 0.1 0M33 40a3 3 0 1 0 0.1 0',escudo:'M24 4l16 6v12c0 11-7 18-16 22C15 40 8 33 8 22V10zM17 24l5 5 10-11',celular:'M14 4h20v40H14zM14 10h20M14 36h20M22 40h4',nuvem:'M14 36h22a8 8 0 0 0 0-16 11 11 0 0 0-21-3 9 9 0 0 0-1 19zM24 24v10M20 30l4 4 4-4'};
+  var mapa = ['servidor', 'zap', 'carrinho', 'escudo', 'celular', 'nuvem'];
+  document.querySelectorAll('.svc').forEach(function(c, i){
+    var n = c.querySelector('.n'); if (!n) return;
+    n.insertAdjacentHTML('beforebegin', '<svg class="vec" viewBox="0 0 48 48" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path pathLength="1" d="' + ICO[mapa[i % mapa.length]] + '"/></svg>');
+  });
+  function desenha(v){ v.classList.remove('desenha'); void v.getBoundingClientRect(); v.classList.add('desenha'); }
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { desenha(e.target); io.unobserve(e.target); } }); }, { threshold: .6 });
+    document.querySelectorAll('.vec').forEach(function(v){ io.observe(v); });
+    document.querySelectorAll('.svc, .tipo').forEach(function(c){ c.addEventListener('pointerenter', function(){ var v = c.querySelector('.vec'); if (v) desenha(v); }); });
+  }
+
+  /* calculo do orcamento */
+  var form = document.querySelector('.orc-form'); if (!form) return;
+  var base = { site: 2, loja: 5, sistema: 7, app: 8 }, pag = document.getElementById('orc-pag'), pagv = document.getElementById('orc-pag-v');
+  var nivelEl = document.getElementById('orc-nivel'), bar = document.getElementById('orc-bar'), lista = document.getElementById('orc-lista'), wa = document.getElementById('orc-wa'), pts = document.getElementById('orc-pts');
+  var ultimo = '';
+  function calc(){
+    var tipo = form.querySelector('input[name=tipo]:checked'), prazo = form.querySelector('input[name=prazo]:checked');
+    var recursos = [].slice.call(form.querySelectorAll('.orc-chips input:checked'));
+    var p = base[tipo.value] + recursos.reduce(function(s, r){ return s + (+r.dataset.p); }, 0) + Math.ceil(+pag.value / 5);
+    var nivel = p < 6 ? 'Simples' : p < 11 ? 'Médio' : p < 16 ? 'Complexo' : 'Robusto';
+    pagv.textContent = pag.value;
+    nivelEl.textContent = nivel; pts.textContent = p + ' pontos';
+    if (nivel !== ultimo) { nivelEl.classList.remove('pulse'); void nivelEl.offsetWidth; nivelEl.classList.add('pulse'); ultimo = nivel; }
+    bar.style.width = Math.min(100, p / 22 * 100) + '%';
+    var itens = [tipo.dataset.nome].concat(recursos.map(function(r){ return r.value; }), [pag.value + (+pag.value === 1 ? ' página ou tela' : ' páginas ou telas'), 'Prazo: ' + prazo.value]);
+    lista.innerHTML = itens.map(function(i){ return '<li>' + i + '</li>'; }).join('');
+    var msg = 'Olá, Elton! Montei um orçamento no seu site:\n\nTipo: ' + tipo.dataset.nome + '\nRecursos: ' + (recursos.length ? recursos.map(function(r){ return r.value; }).join(', ') : 'nenhum extra') +
+      '\nPáginas ou telas: ' + pag.value + '\nPrazo: ' + prazo.value + '\nComplexidade estimada: ' + nivel + '\n\nPode me passar o valor?';
+    wa.href = 'https://wa.me/5511913633327?text=' + encodeURIComponent(msg);
+  }
+  form.addEventListener('input', calc); form.addEventListener('change', calc); calc();
+
+  /* shader fluido no fundo do orcamento (so roda quando aparece) */
+  var cv = document.querySelector('.orc-gl'), g = cv && cv.getContext('webgl');
+  if (!g) return;
+  var fs = 'precision mediump float;uniform float t;uniform vec2 res;float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*(.5+.5*sin(p.x+sin(p.y*1.3)));p=mat2(1.6,1.2,-1.2,1.6)*p+t*.15;a*=.5;}return v;}void main(){vec2 uv=(gl_FragCoord.xy-.5*res)/res.y*2.2;vec2 q=vec2(fbm(uv+t*.1),fbm(uv+vec2(5.2,1.3)));vec2 r=vec2(fbm(uv+3.*q+vec2(1.7,9.2)+t*.2),fbm(uv+3.*q+vec2(8.3,2.8)));float f=fbm(uv+3.*r);vec3 c=mix(vec3(.02),vec3(.55,.03,.07),smoothstep(.3,.75,f));c=mix(c,vec3(1.,.35,.25),smoothstep(.7,.95,f)*length(r)*.6);gl_FragColor=vec4(c,1.);}';
+  function sh(ty, src){ var o = g.createShader(ty); g.shaderSource(o, src); g.compileShader(o); return o; }
+  var pr = g.createProgram(); g.attachShader(pr, sh(g.VERTEX_SHADER, 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}')); g.attachShader(pr, sh(g.FRAGMENT_SHADER, fs)); g.linkProgram(pr); g.useProgram(pr);
+  var b = g.createBuffer(); g.bindBuffer(g.ARRAY_BUFFER, b); g.bufferData(g.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), g.STATIC_DRAW);
+  var loc = g.getAttribLocation(pr, 'p'); g.enableVertexAttribArray(loc); g.vertexAttribPointer(loc, 2, g.FLOAT, false, 0, 0);
+  var ut = g.getUniformLocation(pr, 't'), ur = g.getUniformLocation(pr, 'res'), vis = false;
+  function size(){ cv.width = Math.max(1, cv.clientWidth / 3 | 0); cv.height = Math.max(1, cv.clientHeight / 3 | 0); g.viewport(0, 0, cv.width, cv.height); }
+  size(); addEventListener('resize', size);
+  function draw(ts){ g.uniform1f(ut, (ts || 0) / 1000); g.uniform2f(ur, cv.width, cv.height); g.drawArrays(g.TRIANGLE_STRIP, 0, 4); }
+  if (reduce) { draw(4000); return; }
+  new IntersectionObserver(function(es){ vis = es[0].isIntersecting; }).observe(cv);
+  (function loop(ts){ requestAnimationFrame(loop); if (vis) draw(ts); })();
 })();
 </script>
 </body>
