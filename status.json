@@ -1,55 +1,55 @@
 {
-  "checked_at": "2026-11-08T15:38:52.419Z",
+  "checked_at": "2026-11-09T19:16:54.145Z",
   "sites": [
     {
       "url": "https://lt-seguradoras.vercel.app",
       "status": 200,
-      "ms": 397
+      "ms": 527
     },
     {
       "url": "https://jordan-custom.vercel.app",
       "status": 200,
-      "ms": 434
+      "ms": 324
     },
     {
       "url": "https://ordemflow-ten.vercel.app",
       "status": 200,
-      "ms": 1151
+      "ms": 1440
     },
     {
       "url": "https://crm-zeta-inky.vercel.app",
       "status": 200,
-      "ms": 2225
+      "ms": 2355
     },
     {
       "url": "https://avizo-three.vercel.app",
       "status": 200,
-      "ms": 1230
+      "ms": 1320
     },
     {
       "url": "https://rr-modas.vercel.app",
       "status": 200,
-      "ms": 1177
+      "ms": 1488
     },
     {
       "url": "https://cubas-metales-site.vercel.app",
       "status": 200,
-      "ms": 3413
+      "ms": 3864
     },
     {
       "url": "https://bolsaepoder.vercel.app",
       "status": 200,
-      "ms": 549
+      "ms": 515
     },
     {
       "url": "https://jefersonrodrigues-adv.vercel.app",
       "status": 200,
-      "ms": 507
+      "ms": 470
     },
     {
       "url": "https://grevillas.vercel.app",
       "status": 200,
-      "ms": 506
+      "ms": 449
     }
   ]
 }
